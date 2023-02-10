@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import ProductsFilterPage from "../../components/ProductsPage/ProductsFilterPage.vue";
 const props = defineProps([
     "products",
 ]);
@@ -22,25 +23,11 @@ const setMenuStatus = (active) => {
         </div>
     </div>
     <div :class="'filter-container ' + (menuActive ? 'show' : '')">
-        <div class="filter-container_content">
-            <div class="filter-container_content_header d-flex justify-content-end">
-                <div class="filter-container_content_header_close" @click="setMenuStatus(false)">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                </div>
-            </div>
-        </div>
+        <ProductsFilterPage :setMenuStatus="setMenuStatus" :menuActive="menuActive"/>
     </div>
 </template>
 
 <style scoped>
-.filter-container_content_header_close{
-    font-size: 30px;
-}
-
-.filter-container_content {
-    padding: 10px 20px;
-}
-
 .products-filters_section_title {
     color: #848383;
     font-size: 20px;
