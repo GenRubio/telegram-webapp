@@ -1,0 +1,10 @@
+[
+    {
+        "id": "stripe",
+        "label": "Visa / Mastercard"
+    },
+    {
+        "id": "paypal",
+        "label": "Paypal"
+    }
+]
