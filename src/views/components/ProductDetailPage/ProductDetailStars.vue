@@ -5,7 +5,7 @@ const rating = ref(0);
 </script>
 
 <template>
-    <vue3-star-ratings v-model="rating" :showControl="false" :disableClick="true" :starSize="13" inactiveColor="#cccccc" starColor="#333"/>
+    <vue3-star-ratings v-model="rating" :showControl="false" :disableClick="true" starSize="13" inactiveColor="#cccccc" starColor="#333"/>
 </template>
 
 <style scoped>

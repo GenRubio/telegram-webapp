@@ -3,6 +3,7 @@ import { useRoute } from "vue-router";
 import axios from 'axios';
 import { useTranslationsStore } from '../store/translations.store';
 import { useSettingsStore } from '../store/settings.store';
+import { useBrandsStore } from '../store/brands.store';
 import { useUtilsStore } from '../store/utils.store';
 import { useGoRoute } from '../router/goRoute';
 import Spinner from './components/Spinner.vue';
@@ -17,11 +18,14 @@ const getConfig = async (chatId) => {
             console.log(data.error)
         }
         else {
+            console.log(data)
             const { goProductsPage } = useGoRoute();
             const { setTranslations } = useTranslationsStore();
             const { setSettings } = useSettingsStore();
+            const { setBrands } = useBrandsStore();
             setTranslations(data.translations);
             setSettings(data.settings);
+            setBrands(data.brands);
             goProductsPage(chatId);
         }
     }
@@ -30,7 +34,7 @@ const getConfig = async (chatId) => {
     }
 };
 getConfig(chatId);
-   Telegram.WebApp.expand();
+Telegram.WebApp.expand();
 </script>
 
 <template>

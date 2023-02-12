@@ -1,15 +1,16 @@
 <script setup>
 import { ref } from "vue";
-import { useFiltersStore } from '../../../store/filters.store';
+import { useBrandsStore } from '../../../store/brands.store';
 const props = defineProps([
     "setMenuStatus",
-    "menuActive"
+    "menuActive",
+    "filter"
 ]);
-const { filter } = useFiltersStore();
+const { brands } = useBrandsStore();
 const filterHandle = () => {
+    console.log(props.filter)
     props.setMenuStatus(false);
 }
-console.log(filter.order_by)
 </script>
 
 <template>
@@ -53,6 +54,48 @@ console.log(filter.order_by)
             </div>
         </div>
         <hr>
+        <div class="filter-container_content_item">
+            <div class="filter-container_content_item_title">
+                NICOTINA
+            </div>
+            <div class="filter-container_content_item_content">
+                <div class="form-check">
+                    <input v-model="filter.nicotine" class="form-check-input" type="radio" value="all"
+                        :checked="filter.nicotine == 'all'">
+                    <label class="form-check-label">
+                        2% - 5%
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input v-model="filter.nicotine" class="form-check-input" type="radio" value="2"
+                        :checked="filter.nicotine == '2'">
+                    <label class="form-check-label">
+                        2%
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input v-model="filter.nicotine" class="form-check-input" type="radio" value="3"
+                        :checked="filter.nicotine == '3'">
+                    <label class="form-check-label">
+                        5%
+                    </label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="filter-container_content_item">
+            <div class="filter-container_content_item_title">
+                MARCAS
+            </div>
+            <div class="filter-container_content_item_content">
+                <div v-for="brand in brands" class="form-check">
+                    <input v-model="filter.brands" class="form-check-input" type="checkbox" :id="brand.id" :value="brand.id">
+                    <label class="form-check-label">
+                        {{ brand.name }}
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
     <div v-if="menuActive" class="filter-button" @click="filterHandle">
         APLICAR
@@ -60,11 +103,12 @@ console.log(filter.order_by)
 </template>
 
 <style scoped>
-.filter-container_content_item_title{
+.filter-container_content_item_title {
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 10px;
 }
+
 .filter-button {
     background-color: rgb(28, 27, 27);
     color: white;
