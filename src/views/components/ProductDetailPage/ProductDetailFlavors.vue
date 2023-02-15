@@ -56,6 +56,11 @@ const focusInputHandle = () => {
     const element = document.getElementById("select-2");
     element.scrollIntoView();
 }
+const blurInputHandle = () => {
+    if (selectedFlavors.value.length > 0){
+        showAddButton.value = true;
+    }
+}
 const addFlavorsToTrolley = () => {
     selectedFlavors.value.forEach(function (selectedFlavor, index) {
         addFlavorToTrolley(selectedFlavor);
@@ -95,7 +100,7 @@ const addFlavorsToTrolley = () => {
         </div>
         <div class="select-2_container_input_container" id="select-2">
             <input v-model="searchText" class="form-control select-2_container_input shadow" type="text"
-                placeholder="Buscar sabores..." @focus="focusInputHandle" />
+                placeholder="Buscar sabores..." @focus="focusInputHandle" @blur="blurInputHandle" />
         </div>
         <div class="select-2_container_result_container overflow-auto shadow" id="select-2_container_result_container">
             <div v-for="flavor in filteredList()" class="select-2_container_result_container_item"
