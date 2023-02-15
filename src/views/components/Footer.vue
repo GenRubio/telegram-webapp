@@ -38,7 +38,7 @@
 .social-item-container {
     width: 40px;
     height: 40px;
-    background-color: #2f2f2f;
+    background-color: #474646;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@
     position: sticky;
     top: 100%;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.683);
+    background-color: black;
     color: aliceblue;
 }
 
