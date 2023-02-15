@@ -58,8 +58,8 @@ const focusInputHandle = () => {
 }
 const blurInputHandle = () => {
     if (selectedFlavors.value.length > 0){
+        showAddButton.value = true;        
         hiddeFooter();
-        showAddButton.value = true;
     }
 }
 const addFlavorsToTrolley = () => {
