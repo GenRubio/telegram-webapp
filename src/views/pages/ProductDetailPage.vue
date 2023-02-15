@@ -9,6 +9,7 @@ import ProductDetailHeader from '../components/ProductDetailPage/ProductDetailHe
 import ProductDetailSpecifications from '../components/ProductDetailPage/ProductDetailSpecifications.vue';
 import ProductDetailAccordion from '../components/ProductDetailPage/ProductDetailAccordion.vue';
 import ProductDetailFlavors from '../components/ProductDetailPage/ProductDetailFlavors.vue';
+import Footer from '../components/Footer.vue';
 import HeaderPages from '../utils/HeaderPages.vue';
 import Breadcrumb from '../utils/Breadcrumb.vue';
 import { useUtilsStore } from '../../store/utils.store';
@@ -54,6 +55,7 @@ window.scrollTo(0, 0);
           <ProductDetailFlavors :flavors="product.flavors" />
           <ProductDetailAccordion :data="product.product.description.data" />
      </div>
+     <Footer />
 </template>
 
 <style scoped>

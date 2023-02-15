@@ -1,9 +1,15 @@
 <script setup>
+import {onMounted} from 'vue';
 import { useGoRoute } from '../../../router/goRoute';
+import { useFooterHelper } from '../../../helpers/FooterHelper';
 
 const props = defineProps([
     "chatId",
 ]);
+const { hiddeFooter } = useFooterHelper();
+onMounted(() => {
+    hiddeFooter(); 
+})
 const clickButtonHandle = () => {
     const { goShipmentPage } = useGoRoute();
     goShipmentPage(props.chatId);

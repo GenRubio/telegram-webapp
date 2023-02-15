@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useUserTrolleyStore } from '../../../store/trolley-user.store';
+import { useFooterHelper } from '../../../helpers/FooterHelper';
 import Swal from 'sweetalert2';
 
 const props = defineProps([
@@ -12,6 +13,7 @@ const listFlavors = ref(props.flavors);
 const selectedFlavors = ref([]);
 const showAddButton = ref(false);
 const { addFlavorToTrolley } = useUserTrolleyStore();
+const { showFooter, hiddeFooter } = useFooterHelper();
 
 const filteredList = () => {
     return listFlavors.value.filter((flavor) =>
@@ -40,14 +42,17 @@ const selectFlavorHandle = (flavor) => {
 const showAddButtonManager = () => {
     if (selectedFlavors.value.length > 0) {
         showAddButton.value = true;
+        hiddeFooter();
     }
     else {
         showAddButton.value = false;
+        showFooter();
     }
 }
 const focusInputHandle = () => {
     showResults.value = true;
     showAddButton.value = false;
+    showFooter();
     const element = document.getElementById("select-2");
     element.scrollIntoView();
 }
@@ -60,6 +65,7 @@ const addFlavorsToTrolley = () => {
     });
     selectedFlavors.value = [];
     showAddButton.value = false;
+    showFooter();
     Swal.fire({
         title: 'Carrito',
         text: 'Los productos se han añadido al carrito de compra correctamente.'
@@ -88,11 +94,10 @@ const addFlavorsToTrolley = () => {
             {{ listFlavors.length }} Sabores:
         </div>
         <div class="select-2_container_input_container" id="select-2">
-            <input v-model="searchText" class="form-control select-2_container_input shadow" type="text" placeholder="Buscar sabores..."
-                @focus="focusInputHandle" />
+            <input v-model="searchText" class="form-control select-2_container_input shadow" type="text"
+                placeholder="Buscar sabores..." @focus="focusInputHandle" />
         </div>
-        <div class="select-2_container_result_container overflow-auto shadow"
-            id="select-2_container_result_container">
+        <div class="select-2_container_result_container overflow-auto shadow" id="select-2_container_result_container">
             <div v-for="flavor in filteredList()" class="select-2_container_result_container_item"
                 @click="selectFlavorHandle(flavor)">
                 <div>

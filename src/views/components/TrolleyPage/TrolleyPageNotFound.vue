@@ -1,5 +1,7 @@
 <script setup>
+import { onMounted } from 'vue';
 import { useGoRoute } from '../../../router/goRoute';
+import { useFooterHelper } from '../../../helpers/FooterHelper';
 
 const props = defineProps([
     "chatId",
@@ -8,6 +10,10 @@ const clickHomeHandle = () => {
     const { goProductsPage } = useGoRoute();
     goProductsPage(props.chatId);
 }
+const { showFooter } = useFooterHelper();
+onMounted(() => {
+    showFooter(true); 
+})
 </script>
 
 <template>
