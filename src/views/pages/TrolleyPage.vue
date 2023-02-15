@@ -8,6 +8,7 @@ import TrolleyPageHeader from '../components/TrolleyPage/TrolleyPageHeader.vue';
 import TrolleyPageProductCart from '../components/TrolleyPage/TrolleyPageProductCart.vue';
 import TrolleyPageResume from '../components/TrolleyPage/TrolleyPageResume.vue';
 import TrolleyPageShippingButton from '../components/TrolleyPage/TrolleyPageShippingButton.vue';
+import Separator from '../components/Separator.vue'; 
 import Footer from '../components/Footer.vue';
 import BlackInfoAlert from '../utils/BlackInfoAlert.vue';
 import { useWebMiddleware } from '../../middlewares/webMiddleware';
@@ -34,6 +35,7 @@ window.scrollTo(0, 0);
                     <TrolleyPageProductCart :flavor="flavor" />
                </div>
                <TrolleyPageResume />
+               <Separator />
                <TrolleyPageShippingButton :chatId="chatId" />
           </div>
      </div>

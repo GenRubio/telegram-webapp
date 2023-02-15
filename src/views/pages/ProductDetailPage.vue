@@ -9,6 +9,7 @@ import ProductDetailHeader from '../components/ProductDetailPage/ProductDetailHe
 import ProductDetailSpecifications from '../components/ProductDetailPage/ProductDetailSpecifications.vue';
 import ProductDetailAccordion from '../components/ProductDetailPage/ProductDetailAccordion.vue';
 import ProductDetailFlavors from '../components/ProductDetailPage/ProductDetailFlavors.vue';
+import Separator from '../components/Separator.vue'; 
 import Footer from '../components/Footer.vue';
 import HeaderPages from '../utils/HeaderPages.vue';
 import Breadcrumb from '../utils/Breadcrumb.vue';
@@ -54,6 +55,7 @@ window.scrollTo(0, 0);
           <ProductDetailSpecifications :data="product.product.description.data" />
           <ProductDetailFlavors :flavors="product.flavors" />
           <ProductDetailAccordion :data="product.product.description.data" />
+          <Separator />
      </div>
      <Footer />
 </template>
