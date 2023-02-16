@@ -1,15 +1,16 @@
 <script setup>
-import { ref } from "vue";
 import { useBrandsStore } from '../../../store/brands.store';
 const props = defineProps([
     "setMenuStatus",
     "menuActive",
-    "filter"
+    "filter",
+    "chatId",
+    "getProducts"
 ]);
 const { brands } = useBrandsStore();
 const filterHandle = () => {
-    console.log(props.filter)
     props.setMenuStatus(false);
+    props.getProducts(props.chatId, props.filter)
 }
 </script>
 
@@ -89,7 +90,8 @@ const filterHandle = () => {
             </div>
             <div class="filter-container_content_item_content">
                 <div v-for="brand in brands" class="form-check">
-                    <input v-model="filter.brands" class="form-check-input" type="checkbox" :id="brand.id" :value="brand.id">
+                    <input v-model="filter.brands" class="form-check-input" type="checkbox" :id="brand.id"
+                        :value="brand.id">
                     <label class="form-check-label">
                         {{ brand.name }}
                     </label>

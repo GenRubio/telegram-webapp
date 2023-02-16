@@ -1,8 +1,6 @@
 <script setup>
 import Spinner from '../components/Spinner.vue';
 import { useRoute } from "vue-router";
-import axios from 'axios';
-import { ref } from "vue";
 import ProductsGrid from '../components/ProductsPage/ProductsGrid.vue';
 import HeaderPages from '../../views/utils/HeaderPages.vue';
 import ProductsFilters from '../../views/components/ProductsPage/ProductsFilters.vue';
@@ -27,7 +25,7 @@ window.scrollTo(0, 0);
     <HeaderPages :chatId="chatId" />
     <Spinner v-if="loadingProducts" />
     <div v-else>
-        <ProductsFilters :products="products" :filter="filter" />
+        <ProductsFilters :products="products" :filter="filter" :chatId="chatId" :getProducts="getProducts" />
         <div v-if="products.length != 0">
             <ProductsGrid :chatId="chatId" :products="products" />
         </div>

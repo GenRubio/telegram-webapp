@@ -3,7 +3,9 @@ import { ref } from "vue";
 import ProductsFilterPage from "../../components/ProductsPage/ProductsFilterPage.vue";
 const props = defineProps([
     "products",
-    "filter"
+    "filter",
+    "chatId",
+    "getProducts"
 ]);
 const menuActive = ref(false);
 
@@ -24,7 +26,7 @@ const setMenuStatus = (active) => {
         </div>
     </div>
     <div :class="'filter-container ' + (menuActive ? 'show' : '')">
-        <ProductsFilterPage :setMenuStatus="setMenuStatus" :menuActive="menuActive" :filter="filter"/>
+        <ProductsFilterPage :setMenuStatus="setMenuStatus" :menuActive="menuActive" :filter="filter" :chatId="chatId" :getProducts="getProducts" />
     </div>
 </template>
 
