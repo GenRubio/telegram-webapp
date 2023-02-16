@@ -5,7 +5,7 @@
 </script>
 
 <template>
-    <div id="footer" class="footer shadow-top border">
+    <div id="footer" class="footer">
         <div class="social-container d-flex justify-content-center">
             <div class="d-flex">
                 <div class="m-1 social-item-container">
@@ -43,18 +43,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ffffff;
 }
 
 .social-item-container i {
     font-size: 24px;
-    color: #333;
+    color: #ffffff;
 }
-
-.social-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .footer hr {
     padding: 0;
     margin: 0;
@@ -63,19 +58,18 @@
 .footer {
     position: sticky;
     top: 100%;
-    padding: 10px;
-    background-color: black;
-    color: aliceblue;
+    background-color: rgb(28, 27, 27);
+    color: rgba(250, 250, 250, 0.574);
+    box-shadow: 0px -2px 5px 0px rgba(93, 93, 93, 0.75);
 }
 
-.footer-margin {
-    padding-bottom: 60px;
-}
 .copyright-container {
-    padding: 5px;
+    padding: 10px;
 }
 
-.shadow-top {
-    box-shadow: 0 -10px 10px -10px rgba(164, 164, 164, 0.604);
+.social-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
+
 </style>
