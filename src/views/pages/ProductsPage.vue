@@ -8,36 +8,18 @@ import HeaderPages from '../../views/utils/HeaderPages.vue';
 import ProductsFilters from '../../views/components/ProductsPage/ProductsFilters.vue';
 import Footer from '../utils/Footer.vue';
 import { useFiltersStore } from '../../store/filters.store';
-import { useUtilsStore } from '../../store/utils.store';
+import { getProductsApi } from '../../api/getProductsApi';
 import { useWebMiddleware } from '../../middlewares/webMiddleware';
 
 const route = useRoute();
 const chatId = route.params.chat;
-const products = ref([]);
-const loadingProducts = ref(true);
 const { validateClient } = useWebMiddleware();
 validateClient(chatId);
-const { filter } = useFiltersStore();
 
-const getProducts = async (chatId) => {
-    try {
-        const { api } = useUtilsStore();
-        const { data } = await axios.get(api + chatId + "/products", {
-            params: filter
-        });
-        if (data.error) {
-            console.log(data.error)
-        }
-        else {
-            loadingProducts.value = false;
-            products.value = data['products'];
-        }
-    }
-    catch (error) {
-        console.log(error)
-    }
-};
-getProducts(chatId);
+const { filter } = useFiltersStore();
+const { products, loadingProducts, getProducts} = getProductsApi();
+getProducts(chatId, filter);
+
 window.scrollTo(0, 0);
 </script>
 

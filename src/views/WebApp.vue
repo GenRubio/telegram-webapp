@@ -1,39 +1,14 @@
 <script setup>
 import { useRoute } from "vue-router";
-import axios from 'axios';
-import { useTranslationsStore } from '../store/translations.store';
-import { useSettingsStore } from '../store/settings.store';
-import { useBrandsStore } from '../store/brands.store';
-import { useUtilsStore } from '../store/utils.store';
-import { useGoRoute } from '../router/goRoute';
+import { getConfigApi } from '../api/getConfigApi';
 import Spinner from './components/Spinner.vue';
 Telegram.WebApp.expand();
 const route = useRoute();
 const chatId = route.params.chat;
-const getConfig = async (chatId) => {
-    try {
-        const { api } = useUtilsStore();
-        const { data } = await axios.get(api + chatId + "/config");
-        if (data.error) {
-            console.log(data.error)
-        }
-        else {
-            console.log(data)
-            const { goProductsPage } = useGoRoute();
-            const { setTranslations } = useTranslationsStore();
-            const { setSettings } = useSettingsStore();
-            const { setBrands } = useBrandsStore();
-            setTranslations(data.translations);
-            setSettings(data.settings);
-            setBrands(data.brands);
-            goProductsPage(chatId);
-        }
-    }
-    catch (error) {
-        console.log(error)
-    }
-};
+
+const { getConfig } = getConfigApi();
 getConfig(chatId);
+
 Telegram.WebApp.expand();
 </script>
 
