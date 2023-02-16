@@ -32,6 +32,9 @@ const clickTrolleyHandle = () => {
 </template>
 
 <style scoped>
+.navbar_content_logo{
+    cursor: pointer;
+}
 .separator-nav {
     margin-bottom: 70px;
 }
@@ -63,6 +66,7 @@ const clickTrolleyHandle = () => {
     color: black;
     text-align: center;
     right: 0;
+    cursor: pointer;
 }
 
 /* Navbar cart item count */
