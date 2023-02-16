@@ -9,7 +9,7 @@ import TrolleyPageProductCart from '../components/TrolleyPage/TrolleyPageProduct
 import TrolleyPageResume from '../components/TrolleyPage/TrolleyPageResume.vue';
 import TrolleyPageShippingButton from '../components/TrolleyPage/TrolleyPageShippingButton.vue';
 import Separator from '../components/Separator.vue'; 
-import Footer from '../components/Footer.vue';
+import Footer from '../utils/Footer.vue';
 import BlackInfoAlert from '../utils/BlackInfoAlert.vue';
 import { useWebMiddleware } from '../../middlewares/webMiddleware';
 import { useUserTrolleyStore } from '../../store/trolley-user.store';

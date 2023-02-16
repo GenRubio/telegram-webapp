@@ -10,7 +10,7 @@ import ProductDetailSpecifications from '../components/ProductDetailPage/Product
 import ProductDetailAccordion from '../components/ProductDetailPage/ProductDetailAccordion.vue';
 import ProductDetailFlavors from '../components/ProductDetailPage/ProductDetailFlavors.vue';
 import Separator from '../components/Separator.vue'; 
-import Footer from '../components/Footer.vue';
+import Footer from '../utils/Footer.vue';
 import HeaderPages from '../utils/HeaderPages.vue';
 import Breadcrumb from '../utils/Breadcrumb.vue';
 import { useUtilsStore } from '../../store/utils.store';

@@ -5,7 +5,7 @@ import Spinner from '../components/Spinner.vue';
 import HeaderPages from '../utils/HeaderPages.vue';
 import ShipmentPageBreadcrumb from '../components/ShipmentPage/ShipmentPageBreadcrumb.vue';
 import ShipmentPageForm from '../components/ShipmentPage/ShipmentPageForm.vue';
-import Footer from '../components/Footer.vue';
+import Footer from '../utils/Footer.vue';
 import BlackInfoAlert from '../utils/BlackInfoAlert.vue';
 import { useFooterHelper } from '../../helpers/FooterHelper';
 import { useWebMiddleware } from '../../middlewares/webMiddleware';

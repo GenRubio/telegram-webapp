@@ -6,7 +6,7 @@ import { ref } from "vue";
 import ProductsGrid from '../components/ProductsPage/ProductsGrid.vue';
 import HeaderPages from '../../views/utils/HeaderPages.vue';
 import ProductsFilters from '../../views/components/ProductsPage/ProductsFilters.vue';
-import Footer from '../components/Footer.vue';
+import Footer from '../utils/Footer.vue';
 import { useFiltersStore } from '../../store/filters.store';
 import { useUtilsStore } from '../../store/utils.store';
 import { useWebMiddleware } from '../../middlewares/webMiddleware';
