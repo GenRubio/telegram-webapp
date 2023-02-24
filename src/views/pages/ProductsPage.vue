@@ -24,7 +24,7 @@ window.scrollTo(0, 0);
 <template>
     <HeaderPages :chatId="chatId" />
     <Spinner v-if="loadingProducts" />
-    <div v-else>
+    <div v-else class="content">
         <ProductsFilters :products="products" :filter="filter" :chatId="chatId" :getProducts="getProducts" />
         <div v-if="products.length != 0">
             <ProductsGrid :chatId="chatId" :products="products" />
@@ -34,5 +34,7 @@ window.scrollTo(0, 0);
 </template>
 
 <style scoped>
-
+.content{
+    margin-bottom: 30px;
+}
 </style>

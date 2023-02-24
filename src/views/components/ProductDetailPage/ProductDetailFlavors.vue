@@ -57,8 +57,8 @@ const focusInputHandle = () => {
     element.scrollIntoView();
 }
 const blurInputHandle = () => {
-    if (selectedFlavors.value.length > 0){
-        showAddButton.value = true;        
+    if (selectedFlavors.value.length > 0) {
+        showAddButton.value = true;
         hiddeFooter();
     }
 }
@@ -89,8 +89,7 @@ const addFlavorsToTrolley = () => {
                 <div>
                     {{ flavor.name }}
                 </div>
-                <div class="select-2_container_selected_container_item_remove"
-                    @click="removeSelectFlavorHandle(flavor)">
+                <div class="select-2_container_selected_container_item_remove" @click="removeSelectFlavorHandle(flavor)">
                     <i class="fa-solid fa-xmark"></i>
                 </div>
             </div>
@@ -104,17 +103,22 @@ const addFlavorsToTrolley = () => {
                 placeholder="Buscar sabores..." @focus="focusInputHandle" @blur="blurInputHandle" />
         </div>
         <div class="select-2_container_result_container overflow-auto shadow" id="select-2_container_result_container">
-            <div v-for="flavor in filteredList()" class="select-2_container_result_container_item"
-                @click="selectFlavorHandle(flavor)">
-                <div>
-                    <i class="fa-sharp fa-regular fa-circle-check"></i> {{ flavor.name }}
+            <div v-if="listFlavors.length">
+                <div v-for="flavor in filteredList()" class="select-2_container_result_container_item"
+                    @click="selectFlavorHandle(flavor)">
+                    <div>
+                        <i class="fa-sharp fa-regular fa-circle-check"></i> {{ flavor.name }}
+                    </div>
+                    <!--<div class="select-2_container_result_container_item_tag_new">
+                        NUEVO
+                    </div>-->
+                    <!--<div class="select-2_container_result_container_item_tag_stock">
+                        POCO STOCK
+                    </div>-->
                 </div>
-                <!--<div class="select-2_container_result_container_item_tag_new">
-                    NUEVO
-                </div>-->
-                <!--<div class="select-2_container_result_container_item_tag_stock">
-                    POCO STOCK
-                </div>-->
+            </div>
+            <div v-else class="not-found-flavors-container d-flex justify-content-center">
+                No hay resultados
             </div>
         </div>
     </div>
@@ -124,6 +128,12 @@ const addFlavorsToTrolley = () => {
 </template>
 
 <style scoped>
+.not-found-flavors-container{
+    padding: 10px 0;
+    color: grey;
+    font-size: 15px;
+    background-color: white;
+}
 .select-2_container_result_container_item_tag_stock {
     display: flex;
     background-color: rgb(247, 166, 6);

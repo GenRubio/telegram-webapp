@@ -36,8 +36,8 @@ onMounted(() => {
         <div id="accordion-specifications" class="accordion-content">
             <div class="accordion-personal-body">
                 <ul>
-                    <li v-for="item in data.filter(description => description.value != null)">{{ item.name }}: <b>{{
-                        item.value
+                    <li v-for="item in data">{{ item.name }}: <b>{{
+                        item.value != null ? item.value : '- '
                     }}</b>{{ item.simbol ? item.simbol : '' }}</li>
                 </ul>
             </div>

@@ -1,12 +1,8 @@
 <template>
     <Carousel>
-        <Slide :index="1">
-            <ImageCup :image="product.product.image" imagePosition="center" />
+        <Slide v-for="(item, index) in images" :index="index">
+            <ImageCup :image="item.url" imagePosition="center" />
         </Slide>
-        <Slide :index="2">
-            <ImageCup :image="product.product.image" imagePosition="center" />
-        </Slide>
-
         <template #addons>
             <Navigation />
         </template>
@@ -28,6 +24,24 @@ export default defineComponent({
         Navigation,
     },
     props: ['product'],
+    data() {
+        let index = 1;
+        let images = [];
+        images.push({
+            id: index,
+            url: this.product.product.image
+        });
+        this.product.product.gallery.forEach(function (element) {
+            index++;
+            images.push({
+                id: index,
+                url: element.image
+            });
+        });
+        return {
+            images: images
+        }
+    }
 })
 </script>
 

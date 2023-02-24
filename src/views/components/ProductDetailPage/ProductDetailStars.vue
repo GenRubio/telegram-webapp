@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const rating = ref(0);
+const rating = ref(5);
 </script>
 
 <template>

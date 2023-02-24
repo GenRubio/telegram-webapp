@@ -7,7 +7,7 @@ const props = defineProps([
 
 <template>
     <div class="product-detail-header_container">
-        <div>
+        <div style="max-width: 70%;">
             <div class="product-detail-header_container_title">
                 {{ product.product.name }}
                 <span class="product-detail-header_container_title_brand">
