@@ -107,9 +107,17 @@ const filterHandle = () => {
 </template>
 
 <style scoped>
-.filter-container_header{
-  
+.form-check-input:checked {
+    background-color: black !important;
+    border-color: black !important;
 }
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}
+
+.filter-container_header {}
+
 .filter-container_content_item_title {
     text-transform: uppercase;
     font-weight: bold;

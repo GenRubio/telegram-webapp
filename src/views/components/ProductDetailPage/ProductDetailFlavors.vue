@@ -128,6 +128,9 @@ const addFlavorsToTrolley = () => {
 </template>
 
 <style scoped>
+.form-control:focus{
+    border-color: black;
+}
 .not-found-flavors-container{
     padding: 10px 0;
     color: grey;

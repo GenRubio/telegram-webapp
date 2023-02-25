@@ -167,7 +167,12 @@ const blurHandle = () => {
 </template>
 
 <style scoped>
+.form-control:focus{
+    border-color: black;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}
 .error-input {
+    border-color: red;
     border: 1px solid #ff000087;
 }
 

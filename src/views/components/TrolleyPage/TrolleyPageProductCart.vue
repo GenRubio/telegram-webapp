@@ -64,6 +64,10 @@ const getMaxSelectValues = ref(() => {
 </template>
 
 <style scoped>
+.form-select:focus{
+    border-color: black;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}
 .trolley-page-product-cart_remove {
     position: absolute;
     right: 0;
