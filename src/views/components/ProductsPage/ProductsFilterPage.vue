@@ -1,4 +1,5 @@
 <script setup>
+import Separator from '../../components/Separator.vue';
 import { useBrandsStore } from '../../../store/brands.store';
 const props = defineProps([
     "setMenuStatus",
@@ -25,7 +26,7 @@ const filterHandle = () => {
             </div>
         </div>
     </div>
-    <div class="filter-container_content">
+    <div class="filter-container_content overflow-auto h-100">
         <div class="filter-container_content_item">
             <div class="filter-container_content_item_title">
                 Ordenar por
@@ -99,12 +100,16 @@ const filterHandle = () => {
             </div>
         </div>
     </div>
+    <Separator />
     <div v-if="menuActive" class="filter-button" @click="filterHandle">
         APLICAR
     </div>
 </template>
 
 <style scoped>
+.filter-container_header{
+  
+}
 .filter-container_content_item_title {
     text-transform: uppercase;
     font-weight: bold;
@@ -128,7 +133,7 @@ const filterHandle = () => {
 }
 
 .filter-container_content {
-    padding: 10px 20px;
+    padding: 20px 20px;
 }
 
 .filter-container_content_header_close {
