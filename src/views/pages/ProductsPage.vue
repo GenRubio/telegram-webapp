@@ -2,6 +2,7 @@
 import Spinner from '../components/Spinner.vue';
 import { useRoute } from "vue-router";
 import ProductsGrid from '../components/ProductsPage/ProductsGrid.vue';
+import ProductsNotFound from '../components/ProductsPage/ProductsNotFound.vue';
 import HeaderPages from '../../views/utils/HeaderPages.vue';
 import ProductsFilters from '../../views/components/ProductsPage/ProductsFilters.vue';
 import Footer from '../utils/Footer.vue';
@@ -28,6 +29,9 @@ window.scrollTo(0, 0);
         <ProductsFilters :products="products" :filter="filter" :chatId="chatId" :getProducts="getProducts" />
         <div v-if="products.length != 0">
             <ProductsGrid :chatId="chatId" :products="products" />
+        </div>
+        <div v-else>
+            <ProductsNotFound />
         </div>
     </div>
     <Footer />
