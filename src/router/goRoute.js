@@ -1,5 +1,4 @@
 
-import { ref } from "vue";
 import router from "@/router";
 
 export const useGoRoute = () => {
@@ -18,6 +17,9 @@ export const useGoRoute = () => {
     const goShipmentPage = (chatId) => {
         router.push('/webapp/' + chatId + '/shippment');
     }
+    const goOrderPage = (chatId, reference) => {
+        router.push('/webapp/' + chatId + '/order/' + reference);
+    }
 
     return {
         goWebApp,
@@ -25,5 +27,6 @@ export const useGoRoute = () => {
         goProductDetailPage,
         goTrolleyPage,
         goShipmentPage,
+        goOrderPage,
     }
 }

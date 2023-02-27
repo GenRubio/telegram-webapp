@@ -48,7 +48,7 @@ const sendDataHandle = () => {
         data.payment = shipmentForm.value;
         data.products = getFormatedTrolleyData(trolley);
         data.token = props.chatId;
-        axios.post(api + "new-order", data)
+        axios.post(api + "order/create", data)
             .then(function (response) {
                 if (response.data.error) {
                     Swal.fire({
