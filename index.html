@@ -16,6 +16,7 @@
     background-color: #ffffff !important;
     color: black !important;
   }
+
   #app {
     min-height: 100vh !important;
     margin: 0 !important;
@@ -26,6 +27,13 @@
 </style>
 
 <body>
+  <script type="module">
+    if (import.meta.env.VITE_APP_MODE != 'local') {
+      if (window.Telegram.WebApp.platform == 'unknown') {
+        window.location = import.meta.env.VITE_REDIRECT_URL
+      }
+    }
+  </script>
   <div id="app"></div>
   <script type="module" src="/src/main.js"></script>
 </body>
