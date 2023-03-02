@@ -40,6 +40,7 @@ const setMenuStatus = (active) => {
     border: 2px solid #cccccc;
     padding: 5px 20px;
     border-radius: 20px;
+    cursor:pointer;
 }
 
 .products-filters_section {

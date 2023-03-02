@@ -35,6 +35,9 @@ defineProps([
 </template>
 
 <style scoped>
+.products-grid-item_container{
+    cursor: pointer;
+}
 .products-grid-item_container_description_price_container span {
     text-decoration: line-through;
     font-size: 15px;

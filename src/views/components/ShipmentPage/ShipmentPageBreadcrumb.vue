@@ -43,6 +43,7 @@ const clickHandle = (page) => {
 .breadcrumb_container_home{
     padding-top: 15px;
     padding-bottom: 15px;
+    cursor: pointer;
 }
 .breadcrumb_separator {
     margin: 0px 6px;

@@ -29,6 +29,7 @@ onMounted(() => {
 <style scoped>
 .button-home{
     text-decoration: underline;
+    cursor: pointer;
 }
 .not-found-products_container {
     border: 1px solid rgb(236, 234, 234);

@@ -167,6 +167,7 @@ const addFlavorsToTrolley = () => {
 .select-2_container_selected_container_item_remove {
     padding-right: 5px;
     color: rgb(173, 172, 172);
+    cursor: pointer;
 }
 
 .select-2_container_selected_container_item {
@@ -193,6 +194,7 @@ const addFlavorsToTrolley = () => {
     background-color: white;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .select-2_container_result_container_item:hover {

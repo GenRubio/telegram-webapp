@@ -146,6 +146,7 @@ const filterHandle = () => {
 
 .filter-container_content_header_close {
     font-size: 30px;
+    cursor: pointer;
 }
 
 .filter-container_content_header {

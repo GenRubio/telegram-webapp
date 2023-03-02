@@ -75,6 +75,7 @@ const getMaxSelectValues = ref(() => {
     margin-right: -5px;
     font-size: 20px;
     color: rgb(173, 172, 172);
+    cursor: pointer;
 }
 
 .trolley-page-product-cart_container_select_container {

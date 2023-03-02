@@ -28,6 +28,7 @@ const clickHandle = () => {
 .breadcrumb_container_home {
     padding-top: 15px;
     padding-bottom: 15px;
+    cursor: pointer;
 }
 
 .breadcrumb_container {

@@ -84,6 +84,7 @@ const openAccordionHandle = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 ul {
