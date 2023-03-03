@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import ProductDetailStars from '../../ProductDetailPage/ProductDetailStars.vue';
+import { useTranslationsStore } from '../../../../store/translations.store';
 const props = defineProps([
     "data",
 ]);
+const { trans } = useTranslationsStore();
 const accordionOpened = ref(false);
 const openAccordionHandle = () => {
     let content = document.getElementById("accordion-valorations");
@@ -22,7 +24,7 @@ const openAccordionHandle = () => {
     <div class="accordion-item">
         <div class="accordion-personal-button" @click="openAccordionHandle">
             <div>
-                <b>Valoraciones (0)</b>
+                <b>{{ trans('0ae8f717-313a-4add-8967-00b3528f38de') }} (0)</b>
             </div>
             <div v-if="!accordionOpened">
                 <div class="d-flex">
@@ -49,7 +51,7 @@ const openAccordionHandle = () => {
         <div id="accordion-valorations" class="accordion-content">
             <div class="accordion-personal-body">
                 <div class="accordion-personal-body_results_not_found">
-                    No hay valoraciones
+                    {{ trans('44b9b649-6f37-475e-a597-baec75888a6d') }}
                 </div>
             </div>
         </div>
@@ -57,10 +59,11 @@ const openAccordionHandle = () => {
 </template>
 
 <style scoped>
-.arrow-accordion{
+.arrow-accordion {
     padding-top: 3px;
     margin-left: 10px;
 }
+
 .accordion-personal-body_results_not_found {
     border: 1px solid rgb(211, 208, 208);
     padding: 15px;

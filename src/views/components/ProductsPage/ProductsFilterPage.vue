@@ -1,6 +1,7 @@
 <script setup>
 import Separator from '../../components/Separator.vue';
 import { useBrandsStore } from '../../../store/brands.store';
+import { useTranslationsStore } from '../../../store/translations.store';
 const props = defineProps([
     "setMenuStatus",
     "menuActive",
@@ -9,6 +10,7 @@ const props = defineProps([
     "getProducts"
 ]);
 const { brands } = useBrandsStore();
+const { trans } = useTranslationsStore();
 const filterHandle = () => {
     props.setMenuStatus(false);
     props.getProducts(props.chatId, props.filter)
@@ -19,7 +21,7 @@ const filterHandle = () => {
     <div class="filter-container_header">
         <div class="filter-container_content_header shadow-sm d-flex justify-content-between">
             <div class="filter-container_content_header_title">
-                Filtrar por
+                {{ trans('3291353d-ff8d-4325-a3ab-2f51e856d8a7') }}
             </div>
             <div class="filter-container_content_header_close" @click="setMenuStatus(false)">
                 <i class="fa-solid fa-circle-xmark"></i>
@@ -29,28 +31,21 @@ const filterHandle = () => {
     <div class="filter-container_content overflow-auto h-100">
         <div class="filter-container_content_item">
             <div class="filter-container_content_item_title">
-                Ordenar por
+                {{ trans('3783bfc4-616c-4042-b44f-b5d5fb9c6b2f') }}
             </div>
             <div class="filter-container_content_item_content">
                 <div class="form-check">
                     <input v-model="filter.order_by" class="form-check-input" type="radio" value="price_asc"
                         :checked="filter.order_by == 'price_asc'">
                     <label class="form-check-label">
-                        PRECIO (DE MENOR A MAYOR)
+                        {{ trans('3f4460fb-0dea-4baa-a205-3d59aed414b4') }}
                     </label>
                 </div>
                 <div class="form-check">
                     <input v-model="filter.order_by" class="form-check-input" type="radio" value="price_desc"
                         :checked="filter.order_by == 'price_desc'">
                     <label class="form-check-label">
-                        PRECIO (DE MAYOR A MENOR)
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input v-model="filter.order_by" class="form-check-input" type="radio" value="the_most_sold"
-                        :checked="filter.order_by == 'the_most_sold'">
-                    <label class="form-check-label">
-                        LOS MÁS VENDIDOS
+                        {{ trans('dc31e8c1-211e-4f05-b635-5bbc92c5f0ad') }}
                     </label>
                 </div>
             </div>
@@ -58,28 +53,29 @@ const filterHandle = () => {
         <hr>
         <div class="filter-container_content_item">
             <div class="filter-container_content_item_title">
-                NICOTINA
+                {{ trans('cb6a11fb-69e7-484c-9981-84dd26bbbbef') }}
             </div>
             <div class="filter-container_content_item_content">
                 <div class="form-check">
                     <input v-model="filter.nicotine" class="form-check-input" type="radio" value="all"
                         :checked="filter.nicotine == 'all'">
                     <label class="form-check-label">
-                        2% - 5%
+                        {{ trans('bac9e102-eeb8-4d6c-96be-df896a89f624') }} - {{
+                            trans('5d92c118-3eb7-4a8e-afdf-28c6018d1819') }}
                     </label>
                 </div>
                 <div class="form-check">
                     <input v-model="filter.nicotine" class="form-check-input" type="radio" value="2"
                         :checked="filter.nicotine == '2'">
                     <label class="form-check-label">
-                        2%
+                        {{ trans('bac9e102-eeb8-4d6c-96be-df896a89f624') }}
                     </label>
                 </div>
                 <div class="form-check">
                     <input v-model="filter.nicotine" class="form-check-input" type="radio" value="3"
                         :checked="filter.nicotine == '3'">
                     <label class="form-check-label">
-                        5%
+                        {{ trans('5d92c118-3eb7-4a8e-afdf-28c6018d1819') }}
                     </label>
                 </div>
             </div>
@@ -87,7 +83,7 @@ const filterHandle = () => {
         <hr>
         <div class="filter-container_content_item">
             <div class="filter-container_content_item_title">
-                MARCAS
+                {{ trans('3bc47e27-368f-478b-8d61-756be0ad9131') }}
             </div>
             <div class="filter-container_content_item_content">
                 <div v-for="brand in brands" class="form-check">
@@ -102,7 +98,7 @@ const filterHandle = () => {
     </div>
     <Separator />
     <div v-if="menuActive" class="filter-button" @click="filterHandle">
-        APLICAR
+        {{ trans('5330ac7b-1963-4822-86c4-15d6f9b3c5f5') }}
     </div>
 </template>
 

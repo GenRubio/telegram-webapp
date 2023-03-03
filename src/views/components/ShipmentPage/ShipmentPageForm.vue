@@ -7,10 +7,12 @@ import provinces from '../../../data/provinces.json';
 import paymentMethods from '../../../data/payment-methods.json';
 import { useUserTrolleyStore } from '../../../store/trolley-user.store';
 import { useUtilsStore } from '../../../store/utils.store';
+import { useTranslationsStore } from '../../../store/translations.store';
 
 const props = defineProps([
     "chatId",
 ]);
+const { trans } = useTranslationsStore();
 const { trolley } = useUserTrolleyStore();
 const showTramitButton = ref(true);
 const sendingData = ref(false);
@@ -52,7 +54,7 @@ const sendDataHandle = () => {
             .then(function (response) {
                 if (response.data.error) {
                     Swal.fire({
-                        title: 'Error',
+                        title: trans('853680aa-ab88-43d1-ad9d-db7997da4879'),
                         text: response.data.error
                     });
                     sendingData.value = false;
@@ -65,8 +67,8 @@ const sendDataHandle = () => {
             })
             .catch(function (err) {
                 Swal.fire({
-                    title: 'Error',
-                    text: 'La web se encuentra en mantenimiento'
+                    title: trans('853680aa-ab88-43d1-ad9d-db7997da4879'),
+                    text: trans('e44f696e-4de0-47c5-8cfb-42656ff214b7')
                 });
                 shipmentForm.value = shipmentFormLayout
                 sendingData.value = false;
@@ -74,8 +76,8 @@ const sendDataHandle = () => {
     }
     else {
         Swal.fire({
-            title: 'Dirección de envío',
-            text: 'Faltan campos por rellenar.'
+            title: trans('af1dca05-babc-4772-886d-607117003b72'),
+            text: trans('f86d41ff-9641-496e-a137-7d9a043e2856')
         });
     }
 }
@@ -107,37 +109,42 @@ const blurHandle = () => {
     <div class="shipment-page-form">
         <div class="shipment-page-form_container">
             <div class="shipment-page-form_titles">
-                Información de contacto
+                {{ trans('c942249f-ab1e-4d9c-be9f-9f52a23d388d') }}
             </div>
             <div class="shipment-page-form_input_container">
                 <input v-model="shipmentForm.e_mail" type="text" class="form-control" placeholder="Correo electrónico">
             </div>
             <hr>
             <div class="shipment-page-form_titles">
-                Dirección de envío
+                {{ trans('af1dca05-babc-4772-886d-607117003b72') }}
             </div>
             <select v-model="shipmentForm.country" class="form-select shipment-page-form_input_container">
                 <option v-for="country in countries" :value="country.label">{{ country.label }}</option>
             </select>
             <div class="shipment-page-form_input_container">
                 <input v-model="shipmentForm.name" type="text" :class="validateInput(shipmentForm.name)"
-                    placeholder="Nombre *" @focus="focusHandle" @blur="blurHandle">
+                    :placeholder="trans('f47322cd-ba51-4cf0-8280-31de8073da80') + ' *'" @focus="focusHandle"
+                    @blur="blurHandle">
             </div>
             <div class="shipment-page-form_input_container">
                 <input v-model="shipmentForm.surnames" type="text" :class="validateInput(shipmentForm.surnames)"
-                    placeholder="Apellidos *" @focus="focusHandle" @blur="blurHandle">
+                    :placeholder="trans('de5f0adb-d8eb-4312-9606-64a1075f422d') + ' *'" @focus="focusHandle"
+                    @blur="blurHandle">
             </div>
             <div class="shipment-page-form_input_container">
                 <input v-model="shipmentForm.address" type="text" :class="validateInput(shipmentForm.address)"
-                    placeholder="Dirección *" @focus="focusHandle" @blur="blurHandle">
+                    :placeholder="trans('070d3f08-490c-48fa-b3f5-09c80d26b2f8') + ' *'" @focus="focusHandle"
+                    @blur="blurHandle">
             </div>
             <div class="shipment-page-form_input_container">
                 <input v-model="shipmentForm.postal_code" type="text" :class="validateInput(shipmentForm.postal_code)"
-                    placeholder="Código postal *" @focus="focusHandle" @blur="blurHandle">
+                    :placeholder="trans('09ff692f-082d-4ed6-9998-5a65e8f6aa9a') + ' *'" @focus="focusHandle"
+                    @blur="blurHandle">
             </div>
             <div class="shipment-page-form_input_container">
                 <input v-model="shipmentForm.city" type="text" :class="validateInput(shipmentForm.city)"
-                    placeholder="Ciudad *" @focus="focusHandle" @blur="blurHandle">
+                    :placeholder="trans('2da0b357-7e57-4785-89e0-2e9a840624a0') + ' *'" @focus="focusHandle"
+                    @blur="blurHandle">
             </div>
             <select v-model="shipmentForm.province" class="form-select shipment-page-form_input_container">
                 <option v-for="province in provinces" :value="province.label">{{ province.label }}</option>
@@ -148,7 +155,7 @@ const blurHandle = () => {
             </div>
             <hr>
             <div class="shipment-page-form_titles">
-                Metodo de pago
+                {{ trans('6a37b341-b198-44e8-b23e-d4ad36ccc244') }}
             </div>
             <select v-model="shipmentForm.payment_method" class="form-select shipment-page-form_input_container">
                 <option v-for="payment in paymentMethods" :value="payment.id">{{ payment.label }}</option>
@@ -158,7 +165,7 @@ const blurHandle = () => {
     <div :class="showTramitButton ? 'shipment-page-payment-button' : 'shipment-page-payment-button_fix'"
         @click="sendDataHandle">
         <div v-if="!sendingData" class="shipment-page-payment-button_container">
-            Tramitar
+            {{ trans('e41e2bf8-e1e2-4ec9-9595-6d55184c98bb') }}
         </div>
         <div v-if="sendingData" class="spinner-border text-light" role="status">
             <span class="sr-only">Loading...</span>
@@ -167,14 +174,16 @@ const blurHandle = () => {
 </template>
 
 <style scoped>
-.form-select:focus{
+.form-select:focus {
     border-color: black;
     box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
 }
-.form-control:focus{
+
+.form-control:focus {
     border-color: black;
     box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
 }
+
 .error-input {
     border-color: red;
     border: 1px solid #ff000087;
@@ -229,5 +238,4 @@ const blurHandle = () => {
 .shipment-page-form {
     padding: 0px 20px;
     margin-bottom: 100px;
-}
-</style>
+}</style>

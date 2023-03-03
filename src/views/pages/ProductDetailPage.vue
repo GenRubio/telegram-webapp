@@ -43,7 +43,7 @@ window.scrollTo(0, 0);
           <ProductDetailAccordion :data="product.product.description.data" />
           <Separator />
      </div>
-     <Footer />
+     <Footer v-if="!loadingProduct" />
 </template>
 
 <style scoped>

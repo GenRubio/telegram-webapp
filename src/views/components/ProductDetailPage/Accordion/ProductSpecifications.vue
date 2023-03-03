@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useTranslationsStore } from '../../../../store/translations.store';
 const props = defineProps([
     "data",
 ]);
+const { trans } = useTranslationsStore();
 const accordionOpened = ref(false);
 const openAccordionHandle = () => {
     let content = document.getElementById("accordion-specifications");
@@ -23,7 +25,7 @@ onMounted(() => {
     <div class="accordion-item">
         <div class="accordion-personal-button" @click="openAccordionHandle">
             <div>
-                <b>Especificaciones</b>
+                <b>{{ trans('a12681c8-f159-472b-a428-8d0217701098') }}</b>
             </div>
             <div v-if="!accordionOpened">
                 <i class="fa-solid fa-chevron-up"></i>

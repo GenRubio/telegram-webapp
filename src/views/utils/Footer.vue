@@ -1,7 +1,9 @@
 
 
 <script setup>
+import { useTranslationsStore } from '../../store/translations.store';
 
+const { trans } = useTranslationsStore();
 </script>
 
 <template>
@@ -28,7 +30,7 @@
         <hr>
         <div class="copyright-container d-flex justify-content-center">
             <div>
-                © Copyright 2023
+                {{ trans('0325edab-0f32-4c2f-b26b-26d6cd782b03') }}
             </div>
         </div>
     </div>

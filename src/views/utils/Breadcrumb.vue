@@ -1,9 +1,11 @@
 <script setup>
 import { useGoRoute } from '../../router/goRoute';
+import { useTranslationsStore } from '../../store/translations.store';
 
 const props = defineProps([
     "chatId",
 ]);
+const { trans } = useTranslationsStore();
 
 const clickHandle = () => {
     const { goProductsPage } = useGoRoute();
@@ -14,7 +16,7 @@ const clickHandle = () => {
 <template>
     <div class="breadcrumb_container">
         <div class="breadcrumb_container_home" @click="clickHandle">
-            Inicio
+            {{ trans('e2557a77-bc07-4db9-b4a5-f970786a1ba4') }}
         </div>
         <hr>
     </div>

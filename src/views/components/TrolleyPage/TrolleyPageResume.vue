@@ -1,6 +1,9 @@
 <script setup>
 import { useUserTrolleyStore } from '../../../store/trolley-user.store';
+import { useTranslationsStore } from '../../../store/translations.store';
+
 const { trolley, totalPrice, shipmentPrice } = useUserTrolleyStore();
+const { trans } = useTranslationsStore();
 
 </script>
 
@@ -10,13 +13,13 @@ const { trolley, totalPrice, shipmentPrice } = useUserTrolleyStore();
         <div class="trolley-page-resume_container">
             <div class="trolley-page-resume_container_content">
                 <div class="trolley-page-resume_container_content_products">
-                    Subtotal ({{ trolley.length }} Productos): {{ totalPrice() }} €
+                    {{ trans('090f6aba-3915-48f7-ad43-1b2b47574147') }} ({{ trolley.length }} {{ trans('6b1b1a63-4f5f-4729-b5d2-ee15d4214d35') }}): {{ totalPrice() }} €
                 </div>
                 <div class="trolley-page-resume_container_content_shipping">
-                    Envio: {{ shipmentPrice() != null ? '8 €' : 'Gratis' }}
+                    {{ trans('3d1bdce1-f269-41f6-8678-fc97d5cf0e4e') }}: {{ shipmentPrice() != null ?  shipmentPrice() + ' €' :  trans('d47ab235-e303-4e31-9c8e-517937523f21') }}
                 </div>
                 <div class="trolley-page-resume_container_content_total">
-                    Total: {{ shipmentPrice() != null ? (totalPrice() + shipmentPrice()) : totalPrice() }} €
+                    {{ trans('c43e7a70-ff5b-46e8-9a09-70f9c41ce6c5') }}: {{ shipmentPrice() != null ? (totalPrice() + shipmentPrice()) : totalPrice() }} €
                 </div>
             </div>
         </div>

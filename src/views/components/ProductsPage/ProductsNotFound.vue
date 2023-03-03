@@ -1,10 +1,12 @@
 <script setup>
+import { useTranslationsStore } from '../../../store/translations.store';
 
+const { trans } = useTranslationsStore();
 </script>
 
 <template>
     <div class="products-not-found_container d-flex justify-content-center shadow">
-       No hay resultados
+       {{ trans('2a9a1ad5-f272-4b6a-805b-a45e73f34232') }}
     </div>
 </template>
 

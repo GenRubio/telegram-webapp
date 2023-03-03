@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useUserTrolleyStore } from '../../../store/trolley-user.store';
 import { useFooterHelper } from '../../../helpers/FooterHelper';
+import { useTranslationsStore } from '../../../store/translations.store';
 import Swal from 'sweetalert2';
 
 const props = defineProps([
@@ -13,6 +14,7 @@ const listFlavors = ref(props.flavors);
 const selectedFlavors = ref([]);
 const showAddButton = ref(false);
 const { addFlavorToTrolley } = useUserTrolleyStore();
+const { trans } = useTranslationsStore();
 const { showFooter, hiddeFooter } = useFooterHelper();
 
 const filteredList = () => {
@@ -73,8 +75,8 @@ const addFlavorsToTrolley = () => {
     showAddButton.value = false;
     showFooter();
     Swal.fire({
-        title: 'Carrito',
-        text: 'Los productos se han añadido al carrito de compra correctamente.'
+        title: trans('dfda1d7c-508a-4bb5-8255-52d94b23dd39'),
+        text: trans('7b626510-00a7-4a64-a175-67432e1b3a73')
     });
 }
 </script>
@@ -83,7 +85,7 @@ const addFlavorsToTrolley = () => {
     <div class="select-2_container">
         <div v-if="selectedFlavors.length" class="select-2_container_selected_container">
             <div class="flavor-titles">
-                Sabores seleccionados ({{ selectedFlavors.length }}):
+                {{ trans('29f7e87f-5967-4b6f-832a-feaefc3adcdf') }} ({{ selectedFlavors.length }}):
             </div>
             <div v-for="flavor in selectedFlavors" class="select-2_container_selected_container_item">
                 <div>
@@ -96,11 +98,12 @@ const addFlavorsToTrolley = () => {
             <hr>
         </div>
         <div class="flavor-titles">
-            {{ listFlavors.length }} Sabores:
+            {{ listFlavors.length }} {{ trans('075e395e-9cd8-4959-bce6-e6cab354e4af') }}:
         </div>
         <div class="select-2_container_input_container" id="select-2">
             <input v-model="searchText" class="form-control select-2_container_input shadow" type="text"
-                placeholder="Buscar sabores..." @focus="focusInputHandle" @blur="blurInputHandle" />
+                :placeholder="trans('2e69d193-03a4-4d90-9867-5b3ac90d8caf')" @focus="focusInputHandle"
+                @blur="blurInputHandle" />
         </div>
         <div class="select-2_container_result_container overflow-auto shadow" id="select-2_container_result_container">
             <div v-if="listFlavors.length">
@@ -110,33 +113,35 @@ const addFlavorsToTrolley = () => {
                         <i class="fa-sharp fa-regular fa-circle-check"></i> {{ flavor.name }}
                     </div>
                     <!--<div class="select-2_container_result_container_item_tag_new">
-                        NUEVO
-                    </div>-->
+                                        NUEVO
+                                    </div>-->
                     <!--<div class="select-2_container_result_container_item_tag_stock">
-                        POCO STOCK
-                    </div>-->
+                                        POCO STOCK
+                                    </div>-->
                 </div>
             </div>
             <div v-else class="not-found-flavors-container d-flex justify-content-center">
-                No hay resultados
+                {{ trans('2a9a1ad5-f272-4b6a-805b-a45e73f34232') }}
             </div>
         </div>
     </div>
     <div v-if="showAddButton" class="product-detail-flavors_add_button" @click="addFlavorsToTrolley">
-        Añadir al carrito
+        {{ trans('bb29bafc-f2bb-4c15-9ea9-bb50320c8dda') }}
     </div>
 </template>
 
 <style scoped>
-.form-control:focus{
+.form-control:focus {
     border-color: black;
 }
-.not-found-flavors-container{
+
+.not-found-flavors-container {
     padding: 10px 0;
     color: grey;
     font-size: 15px;
     background-color: white;
 }
+
 .select-2_container_result_container_item_tag_stock {
     display: flex;
     background-color: rgb(247, 166, 6);

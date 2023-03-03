@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from "vue";
 import ProductsFilterPage from "../../components/ProductsPage/ProductsFilterPage.vue";
+import { useTranslationsStore } from '../../../store/translations.store';
 const props = defineProps([
     "products",
     "filter",
     "chatId",
-    "getProducts"
+    "getProducts",
 ]);
+const { trans } = useTranslationsStore();
 const menuActive = ref(false);
 
 const setMenuStatus = (active) => {
@@ -17,11 +19,11 @@ const setMenuStatus = (active) => {
 <template>
     <div class="products-filters_section">
         <div class="products-filters_section_title">
-            {{ products.length }} Resultados
+            {{ products.length }} {{ trans('d6e0081d-a4b9-4946-b873-1fbe05f8b282') }}
         </div>
         <div>
             <div class="products-filters_section_button" @click="setMenuStatus(true)">
-                Filtros <i class="fa-solid fa-filter"></i>
+                {{ trans('937e35af-4edc-4625-9239-2601e3af1ecf') }} <i class="fa-solid fa-filter"></i>
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@ window.scrollTo(0, 0);
         <BlackInfoAlert text="Los envios solo están disponibles para España" />
         <ShipmentPageForm :chatId="chatId" />
     </div>
-    <Footer />
+    <Footer v-if="validationCompleted === true" />
 </template>
 
 <style scoped>

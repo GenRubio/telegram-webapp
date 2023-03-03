@@ -39,7 +39,7 @@ window.scrollTo(0, 0);
                <TrolleyPageShippingButton :chatId="chatId" />
           </div>
      </div>
-     <Footer />
+     <Footer v-if="validationCompleted === true" />
 </template>
 
 <style scoped>

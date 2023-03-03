@@ -34,7 +34,7 @@ window.scrollTo(0, 0);
             <ProductsNotFound />
         </div>
     </div>
-    <Footer />
+    <Footer v-if="!loadingProducts" />
 </template>
 
 <style scoped>

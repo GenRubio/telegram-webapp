@@ -1,10 +1,11 @@
 <script setup>
 import { useGoRoute } from '../../../router/goRoute';
+import { useTranslationsStore } from '../../../store/translations.store';
 
 const props = defineProps([
     "chatId",
 ]);
-
+const { trans } = useTranslationsStore();
 const clickHandle = (page) => {
     const { goProductsPage, goTrolleyPage } = useGoRoute();
     switch (page) {
@@ -22,13 +23,13 @@ const clickHandle = (page) => {
     <div class="breadcrumb_container">
         <div class="d-flex">
             <div class="breadcrumb_container_home" @click="clickHandle('home')">
-                Inicio
+                {{ trans('e2557a77-bc07-4db9-b4a5-f970786a1ba4') }}
             </div>
             <div class="breadcrumb_separator">
                 <i class="fa-solid fa-chevron-right"></i>
             </div>
             <div class="breadcrumb_container_home" @click="clickHandle('trolley')">
-                Carrito
+                {{ trans('dfda1d7c-508a-4bb5-8255-52d94b23dd39') }}
             </div>
         </div>
         <hr>
@@ -40,11 +41,13 @@ const clickHandle = (page) => {
     margin-top: 0;
     margin-bottom: 20px;
 }
-.breadcrumb_container_home{
+
+.breadcrumb_container_home {
     padding-top: 15px;
     padding-bottom: 15px;
     cursor: pointer;
 }
+
 .breadcrumb_separator {
     margin: 0px 6px;
     font-size: 12px;

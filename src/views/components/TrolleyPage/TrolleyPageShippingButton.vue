@@ -2,10 +2,12 @@
 import {onMounted} from 'vue';
 import { useGoRoute } from '../../../router/goRoute';
 import { useFooterHelper } from '../../../helpers/FooterHelper';
+import { useTranslationsStore } from '../../../store/translations.store';
 
 const props = defineProps([
     "chatId",
 ]);
+const { trans } = useTranslationsStore();
 const { hiddeFooter } = useFooterHelper();
 onMounted(() => {
     hiddeFooter(); 
@@ -19,7 +21,7 @@ const clickButtonHandle = () => {
 <template>
     <div class="trolley-page-tramit-button" @click="clickButtonHandle">
         <div class="trolley-page-tramit-button_container">
-            Comprar ahora
+            {{ trans('b5da7f8f-ce70-4140-8f4a-ed69ad83c75c') }}
         </div>
     </div>
 </template>

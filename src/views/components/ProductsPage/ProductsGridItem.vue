@@ -1,10 +1,11 @@
 <script setup>
 import ImageCup from '../../utils/ImageCup.vue';
 import ProductGridItemDiscount from '../ProductsPage/ProductGridItemDiscount.vue';
+import { useTranslationsStore } from '../../../store/translations.store';
 defineProps([
     "product",
 ]);
-
+const { trans } = useTranslationsStore();
 </script>
 
 <template>
@@ -20,7 +21,7 @@ defineProps([
                 }})</span>
             </div>
             <div class="products-grid-item_container_description_flavors">
-                {{ product.flavors }} sabores
+                {{ product.flavors }} {{ trans('075e395e-9cd8-4959-bce6-e6cab354e4af').toLowerCase() }}
             </div>
             <div class="products-grid-item_container_description_price_container">
                 <div v-if="product.discount">
