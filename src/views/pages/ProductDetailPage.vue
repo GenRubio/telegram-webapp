@@ -35,7 +35,6 @@ window.scrollTo(0, 0);
           <Breadcrumb :chatId="chatId" />
           <ProductDetailHeader :product="product" />
           <div class="product-detail-page_product_image shadow-sm">
-               <!--<ImageCup :image="product.product.image" imagePosition="center" />-->
                <ProductDetailSlider :product="product" />
           </div>
           <ProductDetailSpecifications :data="product.product.description.data" />
