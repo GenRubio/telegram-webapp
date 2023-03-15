@@ -2,28 +2,19 @@
 
 <script setup>
 import { useTranslationsStore } from '../../store/translations.store';
+import { useSocialNetworksStore } from '../../store/social-networks.store';
 
 const { trans } = useTranslationsStore();
+const { socialNetworks } = useSocialNetworksStore();
 </script>
 
 <template>
     <div id="footer" class="footer">
         <div class="social-container d-flex justify-content-center">
             <div class="d-flex">
-                <div class="m-1 social-item-container">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div class="m-1 social-item-container">
-                    <i class="fa-brands fa-facebook"></i>
-                </div>
-                <div class="m-1 social-item-container">
-                    <i class="fa-brands fa-telegram"></i>
-                </div>
-                <div class="m-1 social-item-container">
-                    <i class="fa-brands fa-youtube"></i>
-                </div>
-                <div class="m-1 social-item-container">
-                    <i class="fa-brands fa-tiktok"></i>
+                <div v-for="item in socialNetworks.parametric_table_values" class="m-1 social-item-container">
+                    <a :href="item.parameter" target="_blank">
+                        <span v-html="item.description"></span></a>
                 </div>
             </div>
         </div>
@@ -37,21 +28,27 @@ const { trans } = useTranslationsStore();
 </template>
 
 <style scoped>
+a {
+    text-decoration: none;
+    color: white;
+}
+
 .social-item-container {
     width: 40px;
     height: 40px;
-    background-color: #474646;
+    background-color: #474646 !important;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .social-item-container i {
     font-size: 24px;
     color: #ffffff;
 }
+
 .footer hr {
     padding: 0;
     margin: 0;
@@ -73,5 +70,4 @@ const { trans } = useTranslationsStore();
     padding-top: 15px;
     padding-bottom: 15px;
 }
-
 </style>
