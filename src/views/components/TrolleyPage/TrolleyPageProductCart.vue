@@ -30,7 +30,7 @@ const getMaxSelectValues = ref(() => {
                 <ImageCup :image="flavor.image" imagePosition="center" />
             </div>
             <div class="trolley-page-product-cart_container_description">
-                <div>
+                <div v-if="flavor.product_model.multiple_flavors">
                     <div class="model-title">
                         {{ flavor.product_model.name }} <span class="model-title_brand">({{
                             flavor.product_model.brand
@@ -38,6 +38,11 @@ const getMaxSelectValues = ref(() => {
                     </div>
                     <div class="flavor-title">
                         {{ flavor.name }}
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="model-title-2">
+                        {{ flavor.product_model.name }}
                     </div>
                 </div>
             </div>
@@ -93,9 +98,15 @@ const getMaxSelectValues = ref(() => {
     font-size: 11px;
 }
 
+.model-title-2{
+    font-size: 13px;
+    font-weight: bold;
+}
+
 .model-title {
     font-weight: bold;
 }
+
 
 .model-title_brand {
     font-size: 12px;

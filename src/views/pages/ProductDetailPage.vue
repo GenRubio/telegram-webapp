@@ -38,7 +38,7 @@ window.scrollTo(0, 0);
                <ProductDetailSlider :product="product" />
           </div>
           <ProductDetailSpecifications :data="product.product.description.data" />
-          <ProductDetailFlavors :flavors="product.flavors" />
+          <ProductDetailFlavors :product="product.product" :flavors="product.flavors" />
           <ProductDetailAccordion :data="product.product.description.data" />
           <Separator />
      </div>

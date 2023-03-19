@@ -1,11 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useUserTrolleyStore } from '../../../store/trolley-user.store';
 import { useFooterHelper } from '../../../helpers/FooterHelper';
 import { useTranslationsStore } from '../../../store/translations.store';
 import Swal from 'sweetalert2';
 
 const props = defineProps([
+    "product",
     "flavors",
 ]);
 const searchText = ref("");
@@ -16,6 +17,12 @@ const showAddButton = ref(false);
 const { addFlavorToTrolley } = useUserTrolleyStore();
 const { trans } = useTranslationsStore();
 const { showFooter, hiddeFooter } = useFooterHelper();
+
+onMounted(() => {
+    if (!props.product.multiple_flavors && props.flavors.length) {
+        selectFlavorHandle(props.flavors[0]);
+    }
+});
 
 const filteredList = () => {
     return listFlavors.value.filter((flavor) =>
@@ -82,7 +89,7 @@ const addFlavorsToTrolley = () => {
 </script>
 
 <template>
-    <div class="select-2_container">
+    <div v-if="product.multiple_flavors" class="select-2_container">
         <div v-if="selectedFlavors.length" class="select-2_container_selected_container">
             <div class="flavor-titles">
                 {{ trans('29f7e87f-5967-4b6f-832a-feaefc3adcdf') }} ({{ selectedFlavors.length }}):
@@ -113,11 +120,11 @@ const addFlavorsToTrolley = () => {
                         <i class="fa-sharp fa-regular fa-circle-check"></i> {{ flavor.name }}
                     </div>
                     <!--<div class="select-2_container_result_container_item_tag_new">
-                                        NUEVO
-                                    </div>-->
+                                                NUEVO
+                                            </div>-->
                     <!--<div class="select-2_container_result_container_item_tag_stock">
-                                        POCO STOCK
-                                    </div>-->
+                                                POCO STOCK
+                                            </div>-->
                 </div>
             </div>
             <div v-else class="not-found-flavors-container d-flex justify-content-center">

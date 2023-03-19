@@ -12,15 +12,15 @@ const { trans } = useTranslationsStore();
     <div class="products-grid-item_container">
         <div class="products-grid-item_container_image">
             <ImageCup :image="product.image" imagePosition="center" />
-            <ProductGridItemDiscount v-if="product.discount" :discount="product.discount"/>
+            <ProductGridItemDiscount v-if="product.discount" :discount="product.discount" />
         </div>
         <div class="products-grid-item_container_description">
-            <div class="products-grid-item_container_description_model">
+            <div class="products-grid-item_container_description_model text-ellipsis">
                 {{ product.name }} <span class="products-grid-item_container_description_brand">({{
                     product.brand
                 }})</span>
             </div>
-            <div class="products-grid-item_container_description_flavors">
+            <div v-if="product.multiple_flavors" class="products-grid-item_container_description_flavors">
                 {{ product.flavors }} {{ trans('075e395e-9cd8-4959-bce6-e6cab354e4af').toLowerCase() }}
             </div>
             <div class="products-grid-item_container_description_price_container">
@@ -36,9 +36,18 @@ const { trans } = useTranslationsStore();
 </template>
 
 <style scoped>
-.products-grid-item_container{
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.products-grid-item_container {
     cursor: pointer;
 }
+
 .products-grid-item_container_description_price_container span {
     text-decoration: line-through;
     font-size: 15px;
