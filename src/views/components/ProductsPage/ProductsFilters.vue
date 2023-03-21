@@ -12,6 +12,12 @@ const { trans } = useTranslationsStore();
 const menuActive = ref(false);
 
 const setMenuStatus = (active) => {
+    if (!active) {
+        document.body.style.overflowY = "scroll";
+    }
+    else {
+        document.body.style.overflowY = "hidden";
+    }
     menuActive.value = active;
 }
 </script>
@@ -28,7 +34,8 @@ const setMenuStatus = (active) => {
         </div>
     </div>
     <div :class="'filter-container ' + (menuActive ? 'show' : '')">
-        <ProductsFilterPage :setMenuStatus="setMenuStatus" :menuActive="menuActive" :filter="filter" :chatId="chatId" :getProducts="getProducts" />
+        <ProductsFilterPage :setMenuStatus="setMenuStatus" :menuActive="menuActive" :filter="filter" :chatId="chatId"
+            :getProducts="getProducts" />
     </div>
 </template>
 
@@ -42,7 +49,7 @@ const setMenuStatus = (active) => {
     border: 2px solid #cccccc;
     padding: 5px 20px;
     border-radius: 20px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .products-filters_section {

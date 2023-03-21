@@ -38,14 +38,14 @@ const filterHandle = () => {
                     <input v-model="filter.order_by" class="form-check-input" type="radio" value="price_asc"
                         :checked="filter.order_by == 'price_asc'">
                     <label class="form-check-label">
-                        {{ trans('3f4460fb-0dea-4baa-a205-3d59aed414b4') }}
+                        {{ trans('3f4460fb-0dea-4baa-a205-3d59aed414b4').toUpperCase() }}
                     </label>
                 </div>
                 <div class="form-check">
                     <input v-model="filter.order_by" class="form-check-input" type="radio" value="price_desc"
                         :checked="filter.order_by == 'price_desc'">
                     <label class="form-check-label">
-                        {{ trans('dc31e8c1-211e-4f05-b635-5bbc92c5f0ad') }}
+                        {{ trans('dc31e8c1-211e-4f05-b635-5bbc92c5f0ad').toUpperCase() }}
                     </label>
                 </div>
             </div>
@@ -95,14 +95,16 @@ const filterHandle = () => {
                 </div>
             </div>
         </div>
+        <Separator />
+        <Separator />
     </div>
-    <Separator />
     <div v-if="menuActive" class="filter-button" @click="filterHandle">
-        {{ trans('5330ac7b-1963-4822-86c4-15d6f9b3c5f5') }}
+        {{ trans('5330ac7b-1963-4822-86c4-15d6f9b3c5f5').toUpperCase() }}
     </div>
 </template>
 
 <style scoped>
+
 .form-check-input:checked {
     background-color: black !important;
     border-color: black !important;
