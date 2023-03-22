@@ -1,10 +1,16 @@
 export const useFooterHelper = () => {
     const showFooter = () => {
-        document.getElementById('footer').style.display = "block";
+        let footer = document.getElementById('footer');
+        if (footer) {
+            footer.style.display = "block";
+        }
     }
 
     const hiddeFooter = () => {
-        document.getElementById('footer').style.display = "none";
+        let footer = document.getElementById('footer');
+        if (footer) {
+            footer.style.display = "none";
+        }
     }
 
     return {
