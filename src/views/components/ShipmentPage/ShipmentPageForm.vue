@@ -205,7 +205,7 @@ const postalCodeChange = () => {
                 <label>{{ trans('2da0b357-7e57-4785-89e0-2e9a840624a0') }} *</label>
                 <input v-model="shipmentForm.city" list="city_browsers" id="city_browser"
                     :class="'form-select ' + validateInput(shipmentForm.city)"
-                    pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
+                    pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*" @focus="focusHandle" @blur="blurHandle">
                 <datalist id="city_browsers">
                     <option v-for="city in addressCities" :value="city">{{ city }}</option>
                 </datalist>
@@ -214,7 +214,7 @@ const postalCodeChange = () => {
                 <label>{{ trans('775da7d3-3cbe-48ce-8fad-9a0db24c0152') }} *</label>
                 <input v-model="shipmentForm.province" list="province_browsers" id="province_browser"
                     :class="'form-select ' + validateInput(shipmentForm.province)"
-                    pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
+                    pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*" @focus="focusHandle" @blur="blurHandle">
                 <datalist id="province_browsers">
                     <option v-for="province in addressProvinces" :value="province">{{ province }}</option>
                 </datalist>
