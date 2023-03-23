@@ -95,7 +95,7 @@ const getFormatedTrolleyData = (trolley) => {
     return data;
 }
 const validateInput = (input) => {
-    if (input != null && input.trim() == '') {
+    if ((input != null && input.trim() == '') || input == null) {
         return 'form-control error-input';
     }
     return 'form-control';
@@ -177,7 +177,7 @@ const postalCodeChange = () => {
                     </div>
                     <input v-model="shipmentForm.name" type="text" :class="validateInput(shipmentForm.name)"
                         :placeholder="trans('f47322cd-ba51-4cf0-8280-31de8073da80') + ' *'" @focus="focusHandle"
-                        @blur="blurHandle">
+                        @blur="blurHandle" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
                 </div>
             </div>
             <div class="shipment-page-form_input_container">
@@ -187,7 +187,7 @@ const postalCodeChange = () => {
                     </div>
                     <input v-model="shipmentForm.surnames" type="text" :class="validateInput(shipmentForm.surnames)"
                         :placeholder="trans('de5f0adb-d8eb-4312-9606-64a1075f422d') + ' *'" @focus="focusHandle"
-                        @blur="blurHandle">
+                        @blur="blurHandle" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
                 </div>
             </div>
             <div class="shipment-page-form_input_container">
@@ -203,15 +203,21 @@ const postalCodeChange = () => {
             </div>
             <div class="shipment-page-form_input_container">
                 <label>{{ trans('2da0b357-7e57-4785-89e0-2e9a840624a0') }} *</label>
-                <select v-model="shipmentForm.city" :class="'form-select', validateInput(shipmentForm.city)">
+                <input v-model="shipmentForm.city" list="city_browsers" id="city_browser"
+                    :class="'form-select ' + validateInput(shipmentForm.city)"
+                    pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
+                <datalist id="city_browsers">
                     <option v-for="city in addressCities" :value="city">{{ city }}</option>
-                </select>
+                </datalist>
             </div>
             <div class="shipment-page-form_input_container">
                 <label>{{ trans('775da7d3-3cbe-48ce-8fad-9a0db24c0152') }} *</label>
-                <select v-model="shipmentForm.province" :class="'form-select', validateInput(shipmentForm.province)">
+                <input v-model="shipmentForm.province" list="province_browsers" id="province_browser"
+                    :class="'form-select ' + validateInput(shipmentForm.province)"
+                    pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
+                <datalist id="province_browsers">
                     <option v-for="province in addressProvinces" :value="province">{{ province }}</option>
-                </select>
+                </datalist>
             </div>
             <div class="shipment-page-form_input_container">
                 <div class="input-group mb-2">
@@ -220,7 +226,7 @@ const postalCodeChange = () => {
                     </div>
                     <input v-model="shipmentForm.address" type="text" :class="validateInput(shipmentForm.address)"
                         :placeholder="trans('070d3f08-490c-48fa-b3f5-09c80d26b2f8') + ' *'" @focus="focusHandle"
-                        @blur="blurHandle">
+                        @blur="blurHandle" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
                 </div>
             </div>
             <div class="shipment-page-form_input_container">
@@ -229,8 +235,8 @@ const postalCodeChange = () => {
                         <div class="input-group-text"><font-awesome-icon :icon="['fas', 'square-phone']" /></div>
                     </div>
                     <input v-model="shipmentForm.telephone" type="text" class="form-control"
-                        :placeholder="trans('d15f88d0-48fc-4b48-b2a8-1f858bc806d8')" @focus="focusHandle"
-                        @blur="blurHandle">
+                        :placeholder="trans('d15f88d0-48fc-4b48-b2a8-1f858bc806d8')" @focus="focusHandle" @blur="blurHandle"
+                        pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚüÜ.,:;@#¿?¡!()\-_ ]*">
                 </div>
             </div>
             <hr>
