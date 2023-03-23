@@ -1,9 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import countries from '../../../data/countries.json';
-import provinces from '../../../data/provinces.json';
 import paymentMethods from '../../../data/payment-methods.json';
 import { useUserTrolleyStore } from '../../../store/trolley-user.store';
 import { useUtilsStore } from '../../../store/utils.store';
@@ -22,12 +21,14 @@ const shipmentFormLayout = {
     address: null,
     postal_code: null,
     city: null,
-    province: "Almería",
+    province: null,
     e_mail: null,
     telephone: null,
     payment_method: 'stripe',
     country: "España"
 };
+const addressProvinces = ref([]);
+const addressCities = ref([]);
 const shipmentForm = ref({ ...shipmentFormLayout });
 const sendDataHandle = () => {
     if (sendingData.value == true) {
@@ -39,12 +40,14 @@ const sendDataHandle = () => {
     shipmentForm.value.surnames = (shipmentForm.value.surnames == null ? '' : shipmentForm.value.surnames);
     shipmentForm.value.address = (shipmentForm.value.address == null ? '' : shipmentForm.value.address);
     shipmentForm.value.postal_code = (shipmentForm.value.postal_code == null ? '' : shipmentForm.value.postal_code);
+    shipmentForm.value.province = (shipmentForm.value.province == null ? '' : shipmentForm.value.province);
     shipmentForm.value.city = (shipmentForm.value.city == null ? '' : shipmentForm.value.city);
     if (shipmentForm.value.name.trim() != ''
         && shipmentForm.value.surnames.trim() != ''
         && shipmentForm.value.address.trim() != ''
         && shipmentForm.value.postal_code.trim() != ''
-        && shipmentForm.value.city.trim() != '') {
+        && shipmentForm.value.city.trim() != ''
+        && shipmentForm.value.province.trim() != '') {
         sendingData.value = true;
         let data = {};
         data.payment = shipmentForm.value;
@@ -103,6 +106,45 @@ const focusHandle = () => {
 const blurHandle = () => {
     showTramitButton.value = true;
 }
+
+onMounted(() => {
+    document.getElementById("input_postal_code").addEventListener('keyup', function (event) {
+        postalCodeChange();
+    });
+});
+const postalCodeChange = () => {
+    if (shipmentForm.value.postal_code.length != 5) {
+        addressProvinces.value = [];
+        addressCities.value = [];
+        shipmentForm.value.city = null;
+        shipmentForm.value.province = null;
+    }
+    else {
+        const { api } = useUtilsStore();
+        axios.get(api + props.chatId + "/localization/" + shipmentForm.value.postal_code)
+            .then(function (response) {
+                if (response.data.error) {
+                    addressProvinces.value = [];
+                    addressCities.value = [];
+                    shipmentForm.value.city = null;
+                    shipmentForm.value.province = null;
+                }
+                else {
+                    let data = response.data.data;
+                    addressProvinces.value = [...new Set(data.map(item => item.province))];
+                    addressCities.value = [...new Set(data.map(item => item.city))];
+                    shipmentForm.value.city = addressCities.value[0];
+                    shipmentForm.value.province = addressProvinces.value[0];
+                }
+            })
+            .catch(function (err) {
+                addressProvinces.value = [];
+                addressCities.value = [];
+                shipmentForm.value.city = null;
+                shipmentForm.value.province = null;
+            });
+    }
+}
 </script>
 
 <template>
@@ -153,24 +195,34 @@ const blurHandle = () => {
                     <div class="input-group-prepend">
                         <div class="input-group-text"><font-awesome-icon :icon="['fass', 'building']" /></div>
                     </div>
-                    <input v-model="shipmentForm.postal_code" type="text" :class="validateInput(shipmentForm.postal_code)"
+                    <input id="input_postal_code" v-model="shipmentForm.postal_code" type="text"
+                        :class="validateInput(shipmentForm.postal_code)"
                         :placeholder="trans('09ff692f-082d-4ed6-9998-5a65e8f6aa9a') + ' *'" @focus="focusHandle"
                         @blur="blurHandle">
                 </div>
             </div>
             <div class="shipment-page-form_input_container">
-                <input v-model="shipmentForm.address" type="text" :class="validateInput(shipmentForm.address)"
-                    :placeholder="trans('070d3f08-490c-48fa-b3f5-09c80d26b2f8') + ' *'" @focus="focusHandle"
-                    @blur="blurHandle">
+                <label>{{ trans('2da0b357-7e57-4785-89e0-2e9a840624a0') }} *</label>
+                <select v-model="shipmentForm.city" :class="'form-select', validateInput(shipmentForm.city)">
+                    <option v-for="city in addressCities" :value="city">{{ city }}</option>
+                </select>
             </div>
             <div class="shipment-page-form_input_container">
-                <input v-model="shipmentForm.city" type="text" :class="validateInput(shipmentForm.city)"
-                    :placeholder="trans('2da0b357-7e57-4785-89e0-2e9a840624a0') + ' *'" @focus="focusHandle"
-                    @blur="blurHandle">
+                <label>{{ trans('775da7d3-3cbe-48ce-8fad-9a0db24c0152') }} *</label>
+                <select v-model="shipmentForm.province" :class="'form-select', validateInput(shipmentForm.province)">
+                    <option v-for="province in addressProvinces" :value="province">{{ province }}</option>
+                </select>
             </div>
-            <select v-model="shipmentForm.province" class="form-select shipment-page-form_input_container">
-                <option v-for="province in provinces" :value="province.label">{{ province.label }}</option>
-            </select>
+            <div class="shipment-page-form_input_container">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><font-awesome-icon :icon="['fass', 'building']" /></div>
+                    </div>
+                    <input v-model="shipmentForm.address" type="text" :class="validateInput(shipmentForm.address)"
+                        :placeholder="trans('070d3f08-490c-48fa-b3f5-09c80d26b2f8') + ' *'" @focus="focusHandle"
+                        @blur="blurHandle">
+                </div>
+            </div>
             <div class="shipment-page-form_input_container">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
