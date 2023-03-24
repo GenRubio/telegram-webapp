@@ -4,6 +4,7 @@ import { useTranslationsStore } from '../store/translations.store';
 import { useSettingsStore } from '../store/settings.store';
 import { useBrandsStore } from '../store/brands.store';
 import { useSocialNetworksStore } from '../store/social-networks.store';
+import { useParametricSettingsStore } from '../store/parametric-settings.store';
 import { useGoRoute } from '../router/goRoute';
 
 export const getConfigApi = () => {
@@ -21,10 +22,12 @@ export const getConfigApi = () => {
                 const { setSettings } = useSettingsStore();
                 const { setBrands } = useBrandsStore();
                 const { setSocialNetworks } = useSocialNetworksStore();
+                const { setParametricSettings } = useParametricSettingsStore();
                 setTranslations(data.translations);
                 setSettings(data.settings);
                 setBrands(data.brands);
                 setSocialNetworks(data.parametric_tables.social_networks);
+                setParametricSettings(data.parametric_tables.settings.parametric_table_values);
                 goProductsPage(chatId);
             }
         }

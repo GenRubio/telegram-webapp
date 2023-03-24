@@ -3,9 +3,11 @@
 <script setup>
 import { useTranslationsStore } from '../../store/translations.store';
 import { useSocialNetworksStore } from '../../store/social-networks.store';
+import { useParametricSettingsStore } from '../../store/parametric-settings.store';
 
 const { trans } = useTranslationsStore();
 const { socialNetworks } = useSocialNetworksStore();
+const { settingValue } = useParametricSettingsStore();
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const { socialNetworks } = useSocialNetworksStore();
         <hr>
         <div class="copyright-container d-flex justify-content-center">
             <div>
-                {{ trans('0325edab-0f32-4c2f-b26b-26d6cd782b03') }}
+                {{ trans('0325edab-0f32-4c2f-b26b-26d6cd782b03') }} {{ settingValue('settings-api_version') }}
             </div>
         </div>
     </div>
