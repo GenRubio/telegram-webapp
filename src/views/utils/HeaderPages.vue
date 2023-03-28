@@ -1,7 +1,7 @@
 <script setup>
 import { useGoRoute } from '../../router/goRoute';
 import { useUserTrolleyStore } from '../../store/trolley-user.store';
-import imgUrl from '../../../public/images/logo2.png';
+import imgUrl from '../../../public/images/logo3.gif';
 
 const props = defineProps([
     "chatId",
