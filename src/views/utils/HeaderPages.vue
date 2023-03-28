@@ -1,7 +1,9 @@
 <script setup>
+import { ref } from 'vue';
 import { useGoRoute } from '../../router/goRoute';
 import { useUserTrolleyStore } from '../../store/trolley-user.store';
 import imgUrl from '../../../public/images/logo3.gif';
+import NavBar from '../utils/NavBar.vue';
 
 const props = defineProps([
     "chatId",
@@ -16,25 +18,50 @@ const clickTrolleyHandle = () => {
     const { goTrolleyPage } = useGoRoute();
     goTrolleyPage(props.chatId);
 }
+const navBarActive = ref(false);
+const setNavBarActive = (active) => {
+    if (!active) {
+        document.body.style.overflowY = "scroll";
+    }
+    else {
+        document.body.style.overflowY = "hidden";
+    }
+    navBarActive.value = active;
+}
 </script>
 
 <template>
+    <NavBar v-if="navBarActive" :setNavBarActive="setNavBarActive" :chatId="chatId"/>
     <div class="navbar shadow-sm">
-        <div class="navbar_content_logo">
-            <img :src="imgUrl" alt="Logo" style="width:50px;" @click="clickLogoHandle">
-        </div>
-        <div class="cart-icon" @click="clickTrolleyHandle">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span v-if="trolley.length" class="cart-item-count">{{ trolley.length }}</span>
+        <div class="w-100 d-flex justify-content-between align-items-center">
+            <div class="menu-icon" @click="setNavBarActive(true)">
+                <font-awesome-icon :icon="['fasl', 'bars']" />
+            </div>
+            <div class="navbar_content_logo">
+                <img :src="imgUrl" alt="Logo" style="width:50px;" @click="clickLogoHandle">
+            </div>
+            <div class="cart-icon" @click="clickTrolleyHandle">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span v-if="trolley.length" class="cart-item-count">{{ trolley.length }}</span>
+            </div>
         </div>
     </div>
     <div class="separator-nav"></div>
 </template>
 
 <style scoped>
-.navbar_content_logo{
+.menu-icon {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    right: 0;
     cursor: pointer;
 }
+
+.navbar_content_logo {
+    cursor: pointer;
+}
+
 .separator-nav {
     margin-bottom: 70px;
 }
@@ -48,20 +75,15 @@ const clickTrolleyHandle = () => {
     font-family: Arial;
     color: black;
     z-index: 1;
-    display: flex;
-    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* Navbar logo */
-.navbar img {
-    display: block;
-    margin: 0 auto;
-}
+.navbar img {}
 
 /* Navbar cart icon */
 .navbar .cart-icon {
-    position: absolute;
-    padding: 0px 20px;
     font-size: 30px;
     color: black;
     text-align: center;
@@ -79,7 +101,7 @@ const clickTrolleyHandle = () => {
     font-size: 12px;
     padding: 0px;
     position: absolute;
-    right: 10px;
+    right: -7px;
     top: 0px;
     text-align: center;
 }
