@@ -5,11 +5,11 @@
 </script>
 
 <template>
-    <div class="separator"></div>
+    <div id="separator" class="separator"></div>
 </template>
 
 <style scoped>
 .separator {
-    height: 90px;
+    height: 40px;
 }
 </style>

@@ -1,9 +1,6 @@
 <script setup>
 import Spinner from '../components/Spinner.vue';
 import { useRoute } from "vue-router";
-import axios from 'axios';
-import { ref } from "vue";
-import ImageCup from '../../views/utils/ImageCup.vue';
 import ProductDetailSlider from '../components/ProductDetailPage/ProductDetailSlider.vue';
 import ProductDetailHeader from '../components/ProductDetailPage/ProductDetailHeader.vue';
 import ProductDetailSpecifications from '../components/ProductDetailPage/ProductDetailSpecifications.vue';

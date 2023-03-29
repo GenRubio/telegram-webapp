@@ -59,9 +59,8 @@ a {
 .footer {
     position: sticky;
     top: 100%;
-    background-color: rgb(28, 27, 27);
+    background-color: #282c31;
     color: rgba(250, 250, 250, 0.574);
-    box-shadow: 0px -2px 5px 0px rgba(93, 93, 93, 0.75);
 }
 
 .copyright-container {
