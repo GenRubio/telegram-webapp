@@ -27,7 +27,12 @@ const router = createRouter({
             path: '/webapp/:chat/shippment',
             name: 'shippmentPage',
             component: () => import('../views/pages/ShipmentPage.vue')
-        }
+        },
+        {
+            path: '/webapp/:chat/orders',
+            name: 'ordersPage',
+            component: () => import('../views/pages/OrdersPage.vue')
+        },
     ]
 });
 

@@ -17,8 +17,8 @@ export const useGoRoute = () => {
     const goShipmentPage = (chatId) => {
         router.push('/webapp/' + chatId + '/shippment');
     }
-    const goOrderPage = (chatId, reference) => {
-        router.push('/webapp/' + chatId + '/order/' + reference);
+    const goOrdersPage = (chatId) => {
+        router.push('/webapp/' + chatId + '/orders');
     }
 
     return {
@@ -27,6 +27,6 @@ export const useGoRoute = () => {
         goProductDetailPage,
         goTrolleyPage,
         goShipmentPage,
-        goOrderPage,
+        goOrdersPage,
     }
 }

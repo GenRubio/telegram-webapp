@@ -13,6 +13,11 @@ const clickHome = () => {
     const { goProductsPage } = useGoRoute();
     goProductsPage(props.chatId);
 }
+const clickOrders = () => {
+    props.setNavBarActive(false)
+    const { goOrdersPage } = useGoRoute();
+    goOrdersPage(props.chatId);
+}
 </script>
 
 <template>
@@ -25,11 +30,19 @@ const clickHome = () => {
                     </div>
                 </div>
                 <div class="items-container">
-                    <div class="home-page-item d-flex justify-content-between align-items-center" @click="clickHome">
+                    <div class="page-item d-flex justify-content-between align-items-center" @click="clickHome">
                         <div>
                             {{ trans('e2557a77-bc07-4db9-b4a5-f970786a1ba4') }}
                         </div>
-                        <div class="home-page-item-arrow">
+                        <div class="item-arrow">
+                            <font-awesome-icon :icon="['fas', 'chevron-right']" />
+                        </div>
+                    </div>
+                    <div class="page-item d-flex justify-content-between align-items-center" @click="clickOrders">
+                        <div>
+                            {{ trans('9dc05dfe-91db-4447-805c-50d8594dfd64') }}
+                        </div>
+                        <div class="item-arrow">
                             <font-awesome-icon :icon="['fas', 'chevron-right']" />
                         </div>
                     </div>
@@ -47,7 +60,7 @@ const clickHome = () => {
 </template>
 
 <style scoped>
-.home-page-item-arrow {
+.page-item-arrow {
     font-size: 20px;
 }
 
@@ -55,10 +68,11 @@ const clickHome = () => {
     margin-top: 4px;
 }
 
-.home-page-item {
+.page-item {
     font-size: 24px;
     padding: 15px 20px;
     border-bottom: 1px solid rgb(230, 230, 230);
+    cursor: pointer;
 }
 
 .header-container {
