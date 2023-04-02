@@ -23,7 +23,7 @@ export const getProductsApi = () => {
             }
         }
         catch (error) {
-            errorHandler(error);
+         
         }
     };
 

@@ -21,7 +21,7 @@ export const getProductDetailApi = () => {
             }
         }
         catch (error) {
-            errorHandler(error);
+          
         }
     };
 

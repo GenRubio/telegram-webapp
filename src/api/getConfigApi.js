@@ -34,7 +34,7 @@ export const getConfigApi = () => {
             }
         }
         catch (error) {
-            errorHandler(error);
+           
         }
     };
 
