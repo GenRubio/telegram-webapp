@@ -5,18 +5,20 @@ import { useSettingsStore } from '../store/settings.store';
 import { useBrandsStore } from '../store/brands.store';
 import { useSocialNetworksStore } from '../store/social-networks.store';
 import { useParametricSettingsStore } from '../store/parametric-settings.store';
+import { useErrorHelper } from '../helpers/ErrorHelper';
 import { useGoRoute } from '../router/goRoute';
 
 export const getConfigApi = () => {
+    const { errorHandler } = useErrorHelper();
+    
     const getConfig = async (chatId) => {
         try {
             const { api } = useUtilsStore();
             const { data } = await axios.get(api + chatId + "/config");
             if (data.error) {
-                console.log(data.error)
+                errorHandler(data);
             }
             else {
-                console.log(data)
                 const { goProductsPage } = useGoRoute();
                 const { setTranslations } = useTranslationsStore();
                 const { setSettings } = useSettingsStore();
@@ -32,7 +34,7 @@ export const getConfigApi = () => {
             }
         }
         catch (error) {
-            console.log(error)
+            errorHandler(error);
         }
     };
 
