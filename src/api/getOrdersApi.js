@@ -16,6 +16,7 @@ export const getOrdersApi = () => {
                 errorHandler(data);
             }
             else {
+                console.log(data)
                 loadingOrders.value = false;
                 orders.value = data['orders'];
             }
