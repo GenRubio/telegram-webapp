@@ -47,6 +47,14 @@ const selectFlavorHandle = (flavor) => {
     });
     showResults.value = false;
     showAddButtonManager();
+    scrollToDiv('select-2_container_selected_container');
+}
+const scrollToDiv = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    }
 }
 const showAddButtonManager = () => {
     if (selectedFlavors.value.length > 0) {
@@ -90,8 +98,9 @@ const addFlavorsToTrolley = () => {
 
 <template>
     <div v-if="product.multiple_flavors" class="select-2_container">
-        <div v-if="selectedFlavors.length" class="select-2_container_selected_container">
-            <div class="flavor-titles">
+        <div v-if="selectedFlavors.length" id="select-2_container_selected_container"
+            class="select-2_container_selected_container">
+            <div id="flavor-titles" class="flavor-titles">
                 {{ trans('29f7e87f-5967-4b6f-832a-feaefc3adcdf') }} ({{ selectedFlavors.length }}):
             </div>
             <div v-for="flavor in selectedFlavors" class="select-2_container_selected_container_item">
@@ -112,7 +121,8 @@ const addFlavorsToTrolley = () => {
                 :placeholder="trans('2e69d193-03a4-4d90-9867-5b3ac90d8caf')" @focus="focusInputHandle"
                 @blur="blurInputHandle" />
         </div>
-        <div class="select-2_container_result_container overflow-auto shadow" id="select-2_container_result_container">
+        <div class="select-2_container_result_container scroll-custom overflow-auto shadow"
+            id="select-2_container_result_container">
             <div v-if="listFlavors.length">
                 <div v-for="flavor in filteredList()" class="select-2_container_result_container_item"
                     @click="selectFlavorHandle(flavor)">
@@ -120,11 +130,11 @@ const addFlavorsToTrolley = () => {
                         <i class="fa-sharp fa-regular fa-circle-check"></i> {{ flavor.name }}
                     </div>
                     <!--<div class="select-2_container_result_container_item_tag_new">
-                                                NUEVO
-                                            </div>-->
+                                                                        NUEVO
+                                                                    </div>-->
                     <!--<div class="select-2_container_result_container_item_tag_stock">
-                                                POCO STOCK
-                                            </div>-->
+                                                                        POCO STOCK
+                                                                    </div>-->
                 </div>
             </div>
             <div v-else class="not-found-flavors-container d-flex justify-content-center">
@@ -138,6 +148,28 @@ const addFlavorsToTrolley = () => {
 </template>
 
 <style scoped>
+.scroll-custom {
+    --sb-track-color: #c7c7c7;
+    --sb-thumb-color: #030303;
+    --sb-size: 4px;
+
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.scroll-custom::-webkit-scrollbar {
+    width: var(--sb-size) !important;
+}
+
+.scroll-custom::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 10px;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 10px;
+}
+
 .form-control:focus {
     border-color: black;
 }
@@ -202,11 +234,12 @@ const addFlavorsToTrolley = () => {
 }
 
 .select-2_container_result_container_item {
-    padding: 5px 10px;
+    padding: 8px 10px;
     background-color: white;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    border-bottom: 1px solid #bdbbbb40;
 }
 
 .select-2_container_result_container_item:hover {
@@ -225,6 +258,7 @@ const addFlavorsToTrolley = () => {
     width: 100%;
     max-height: 210px;
     z-index: 0;
+    background-color: #bdbbbb40;
 }
 
 .product-detail-flavors_add_button {
