@@ -75,6 +75,7 @@ function closeModal() {
 
 .order-grid-item_container-content {
     padding: 5px;
+    background-color: white;
 }
 
 .order-grid-item_container-header {
