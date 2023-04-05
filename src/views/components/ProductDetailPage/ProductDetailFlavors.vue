@@ -26,7 +26,7 @@ onMounted(() => {
 
 const filteredList = () => {
     return listFlavors.value.filter((flavor) =>
-        flavor.name.toLowerCase().includes(searchText.value.toLowerCase())
+        flavor.name.toLowerCase().includes(searchText.value.toLowerCase()) && flavor.stock > 0
     );
 }
 const removeSelectFlavorHandle = (flavor) => {
