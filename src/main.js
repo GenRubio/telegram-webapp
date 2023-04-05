@@ -14,6 +14,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import vue3StarRatings from "vue3-star-ratings";
 import 'vue3-carousel/dist/carousel.css';
+import Particles from "vue3-particles";
 
 library.add(fas, far, fab)
 dom.watch();
@@ -24,6 +25,7 @@ const pinia = createPinia();
 app.use(router);
 app.use(pinia);
 app.use(VueSweetalert2);
+app.use(Particles);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("vue3-star-ratings", vue3StarRatings);
 app.mount('#app');

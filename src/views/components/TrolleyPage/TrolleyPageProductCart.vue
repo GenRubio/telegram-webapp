@@ -132,5 +132,6 @@ const getMaxSelectValues = ref(() => {
 .trolley-page-product-cart_container {
     border: 1px solid rgb(236, 234, 234);
     padding: 15px 15px 15px 10px;
+    background-color: #ffffff;
 }
 </style>

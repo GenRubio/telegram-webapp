@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
     "pinia": "^2.0.28",
+    "tsparticles": "^2.9.3",
     "vue": "^3.2.45",
     "vue-jquery": "^1.0.6",
     "vue-router": "^4.1.6",
@@ -27,6 +28,7 @@
     "vue-star-rating": "^2.1.0",
     "vue-sweetalert2": "^5.0.5",
     "vue3-carousel": "^0.2.9",
+    "vue3-particles": "^2.9.3",
     "vue3-select2-component": "^0.1.7",
     "vue3-star-ratings": "^1.1.0"
   },

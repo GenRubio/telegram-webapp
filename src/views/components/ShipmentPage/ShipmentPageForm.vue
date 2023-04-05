@@ -255,7 +255,7 @@ const postalCodeChange = () => {
 
 <style scoped>
 .input-group-text {
-    background-color: transparent;
+    background-color: white;
     border: none;
     border-radius: 0%;
     border-top: solid 1px #ced4da;

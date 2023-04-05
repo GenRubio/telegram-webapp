@@ -220,6 +220,7 @@ const addFlavorsToTrolley = () => {
     margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
+    background-color: #ffffff;
 }
 
 .select-2_container_input {

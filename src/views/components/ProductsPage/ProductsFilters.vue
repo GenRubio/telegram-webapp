@@ -50,6 +50,7 @@ const setMenuStatus = (active) => {
     padding: 5px 20px;
     border-radius: 20px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .products-filters_section {
@@ -57,6 +58,7 @@ const setMenuStatus = (active) => {
     justify-content: space-between;
     padding: 15px 20px;
     align-items: center;
+    background-color: #ffffff;
 }
 
 .filter-container {
