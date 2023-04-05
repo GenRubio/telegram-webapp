@@ -27,7 +27,7 @@ window.scrollTo(0, 0);
 <template>
      <HeaderPages :chatId="chatId" />
      <Spinner v-if="validationCompleted === false" />
-     <div v-else>
+     <div v-else class="content">
           <Breadcrumb :chatId="chatId" />
           <TrolleyPageNotFound v-if="trolley.length == 0" :chatId="chatId" />
           <div v-else>
@@ -45,6 +45,9 @@ window.scrollTo(0, 0);
 </template>
 
 <style scoped>
+.content{
+     padding-top: 70px;
+}
 .trolley-page-product-cart {
      padding: 0px 20px;
      margin-bottom: 10px;

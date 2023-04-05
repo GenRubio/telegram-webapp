@@ -28,7 +28,7 @@ const props = defineProps([
                 <ProductDetailStars />
             </div>
             <div class="product-detail-header_total_validations">
-                (0)
+                ({{ product.product.shopping }})
             </div>
         </div>
     </div>

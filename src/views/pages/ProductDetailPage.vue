@@ -28,7 +28,7 @@ window.scrollTo(0, 0);
 <template>
      <HeaderPages :chatId="chatId" />
      <Spinner v-if="loadingProduct" />
-     <div v-else>
+     <div v-else class="content">
           <Breadcrumb :chatId="chatId" />
           <ProductDetailHeader :product="product" />
           <div class="product-detail-page_product_image shadow-sm">
@@ -43,6 +43,9 @@ window.scrollTo(0, 0);
 </template>
 
 <style scoped>
+.content{
+     padding-top: 70px;
+}
 .product-detail-page_product_image {
      background-color: #f6f6f6;
 }

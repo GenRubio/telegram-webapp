@@ -26,7 +26,7 @@ window.scrollTo(0, 0);
 <template>
     <HeaderPages :chatId="chatId" />
     <Spinner v-if="validationCompleted === false" />
-    <div v-else>
+    <div v-else class="content">
         <ShipmentPageBreadcrumb :chatId="chatId" />
         <BlackInfoAlert :text="trans('3138fc48-4389-40dd-af01-53c1440177ff')" />
         <ShipmentPageForm :chatId="chatId" />
@@ -35,5 +35,7 @@ window.scrollTo(0, 0);
 </template>
 
 <style scoped>
-
+.content{
+    padding-top: 70px;
+}
 </style>

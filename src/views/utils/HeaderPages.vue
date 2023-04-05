@@ -46,7 +46,7 @@ const setNavBarActive = (active) => {
             </div>
         </div>
     </div>
-    <div class="separator-nav"></div>
+    <!--<div class="separator-nav"></div>-->
 </template>
 
 <style scoped>

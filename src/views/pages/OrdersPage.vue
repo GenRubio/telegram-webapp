@@ -40,6 +40,9 @@ const { trans } = useTranslationsStore();
     padding-bottom: 15px;
 }
 .content{
-    padding: 20px 20px;
+    padding-top: 90px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 </style>

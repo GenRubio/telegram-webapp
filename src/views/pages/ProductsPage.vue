@@ -39,6 +39,7 @@ window.scrollTo(0, 0);
 
 <style scoped>
 .content{
+    padding-top: 70px;
     margin-bottom: 30px;
 }
 </style>
