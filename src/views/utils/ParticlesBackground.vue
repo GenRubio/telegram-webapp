@@ -55,7 +55,7 @@ const particlesLoaded = async container => {
                     enable: true,
                     area: 800
                 },
-                value: 200
+                value: 80
             },
             opacity: {
                 value: 0.1
