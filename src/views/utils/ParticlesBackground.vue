@@ -58,7 +58,7 @@ const particlesLoaded = async container => {
                 value: 80
             },
             opacity: {
-                value: 0.2
+                value: 0.1
             },
             shape: {
                 type: 'circle'
