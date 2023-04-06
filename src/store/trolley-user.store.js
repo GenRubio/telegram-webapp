@@ -20,7 +20,7 @@ export const useUserTrolleyStore = defineStore("useUserTrolley", () => {
     const shipmentPrice = ref(() => {
         let minOrderPrice = config('1671891736.2341a');
         if (totalPrice.value() <= minOrderPrice) {
-            return config('1671891779.1284a');
+            return parseInt(config('1671891779.1284a'));
         }
         return null;
     });
