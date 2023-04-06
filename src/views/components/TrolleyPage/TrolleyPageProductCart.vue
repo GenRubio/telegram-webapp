@@ -6,7 +6,7 @@ import { useUserTrolleyStore } from '../../../store/trolley-user.store';
 const props = defineProps([
     "flavor",
 ]);
-const { removeFlavorFromTrolley, changeFlavorAmount, getFlavorTotalPrice } = useUserTrolleyStore();
+const { removeFlavorFromTrolley, changeFlavorAmount, flavorTotalPrice } = useUserTrolleyStore();
 
 const removeFlavor = (flavor) => {
     removeFlavorFromTrolley(flavor);
@@ -58,7 +58,7 @@ const getMaxSelectValues = ref(() => {
             </div>
             <div class="trolley-page-product-cart_container_price">
                 <div>
-                    {{ getFlavorTotalPrice(flavor) }} €
+                    {{ flavorTotalPrice(flavor) }} €
                 </div>
             </div>
             <div class="trolley-page-product-cart_remove" @click="removeFlavor(flavor)">

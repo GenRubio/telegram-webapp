@@ -1,11 +1,14 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useSettingsStore } from '../store/settings.store';
+import { usePriceHelper } from "../helpers/PriceHelper";
 
 export const useUserTrolleyStore = defineStore("useUserTrolley", () => {
     const { config } = useSettingsStore();
     const trolley = ref([]);
-    const totalPrice = ref(() => {
+    const { formatPrice } = usePriceHelper();
+
+    const price = ref(() => {
         let total = 0;
         trolley.value.forEach(function (element) {
             if (element.product_model.discount) {
@@ -17,12 +20,24 @@ export const useUserTrolleyStore = defineStore("useUserTrolley", () => {
         });
         return total;
     });
+
+    const totalPrice = ref(() => {
+        return price.value() + (shipmentPrice.value() ? shipmentPrice.value() : 0);
+    });
+
     const shipmentPrice = ref(() => {
         let minOrderPrice = config('1671891736.2341a');
-        if (totalPrice.value() <= minOrderPrice) {
+        if (price.value() <= minOrderPrice) {
             return parseInt(config('1671891779.1284a'));
         }
         return null;
+    });
+
+    const flavorTotalPrice = ref((flavor) => {
+        if (flavor.product_model.discount) {
+            return flavor.product_model.price_with_discount * flavor.amount;
+        }
+        return flavor.product_model.price * flavor.amount;
     });
 
     const addFlavorToTrolley = (flavor) => {
@@ -37,6 +52,7 @@ export const useUserTrolleyStore = defineStore("useUserTrolley", () => {
             trolley.value.push(flavor);
         }
     }
+
     const removeFlavorFromTrolley = (flavor) => {
         trolley.value.forEach(function (trolleyFlavor, index) {
             if (trolleyFlavor.reference == flavor.reference) {
@@ -44,6 +60,7 @@ export const useUserTrolleyStore = defineStore("useUserTrolley", () => {
             }
         });
     }
+
     const changeFlavorAmount = (flavor, amount) => {
         trolley.value.forEach(function (trolleyFlavor, index) {
             if (trolleyFlavor.reference == flavor.reference) {
@@ -51,19 +68,15 @@ export const useUserTrolleyStore = defineStore("useUserTrolley", () => {
             }
         });
     }
-    const getFlavorTotalPrice = ref((flavor) => {
-        if (flavor.product_model.discount) {
-            return flavor.product_model.price_with_discount * flavor.amount;
-        }
-        return flavor.product_model.price * flavor.amount;
-    });
+
     return {
         trolley,
+        price,
         totalPrice,
         shipmentPrice,
+        flavorTotalPrice,
         addFlavorToTrolley,
         removeFlavorFromTrolley,
         changeFlavorAmount,
-        getFlavorTotalPrice,
     }
 });

@@ -5,7 +5,7 @@ import { useTranslationsStore } from '../../../store/translations.store';
 const props = defineProps([
     "trolley",
 ]);
-const { totalPrice, shipmentPrice } = useUserTrolleyStore();
+const { totalPrice } = useUserTrolleyStore();
 const { trans } = useTranslationsStore();
 </script>
 
@@ -16,7 +16,7 @@ const { trans } = useTranslationsStore();
                 {{ trans('6b1b1a63-4f5f-4729-b5d2-ee15d4214d35') }} ({{ trolley.length }})
             </div>
             <div class="trolley-page-header_container_price">
-                {{ shipmentPrice() != null ? (totalPrice() + shipmentPrice()) : totalPrice() }} €
+                {{ totalPrice() }} €
             </div>
         </div>
     </div>

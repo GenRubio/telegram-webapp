@@ -71,6 +71,7 @@ function closeModal() {
     font-weight: bold;
     text-transform: uppercase;
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .order-grid-item_container-content {
@@ -87,7 +88,7 @@ function closeModal() {
 .order-grid-item_container {
     border: 1px solid rgb(210, 208, 208);
     border-radius: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 hr {
