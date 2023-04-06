@@ -7,7 +7,8 @@ import { useWebMiddleware } from '../../middlewares/webMiddleware';
 import { getOrdersApi } from '../../api/getOrdersApi';
 import OrdersGrid from '../components/OrdersPage/OrdersGrid.vue';
 import { useTranslationsStore } from '../../store/translations.store';
-
+import OrdersNotFound from '../components/OrdersPage/OrdersNotFound.vue';
+import Breadcrumb from '../utils/Breadcrumb.vue';
 
 const route = useRoute();
 const chatId = route.params.chat;
@@ -23,26 +24,32 @@ const { trans } = useTranslationsStore();
     <HeaderPages :chatId="chatId" />
     <Spinner v-if="loadingOrders" />
     <div v-else class="content">
-        <div v-if="orders.length > 0">
+        <Breadcrumb :chatId="chatId" />
+        <div v-if="orders.length > 0" class="generic-container">
             <div class="header_title">
                 {{ orders.length }} {{ trans('d6e0081d-a4b9-4946-b873-1fbe05f8b282') }}
             </div>
             <OrdersGrid :orders="orders" />
+        </div>
+        <div v-else>
+            <OrdersNotFound :trans="trans" />
         </div>
     </div>
     <Footer v-if="!loadingOrders" />
 </template>
 
 <style scoped>
+.generic-container{
+    padding: 0px 20px;
+}
 .header_title {
     color: #848383;
     font-size: 20px;
     padding-bottom: 15px;
 }
-.content{
-    padding-top: 90px;
-    padding-left: 20px;
-    padding-right: 20px;
+
+.content {
+    padding-top: 70px;
     padding-bottom: 20px;
 }
 </style>
