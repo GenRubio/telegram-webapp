@@ -9,14 +9,15 @@ const { trans } = useTranslationsStore();
 const accordionOpened = ref(false);
 const openAccordionHandle = () => {
     let content = document.getElementById("accordion-valorations");
-    if (content.style.maxHeight) {
+    if (content && content.style.maxHeight) {
         accordionOpened.value = false;
         content.style.maxHeight = null;
-    } else {
+    } else if (content) {
         accordionOpened.value = true;
         content.style.maxHeight = content.scrollHeight + "px";
     }
 }
+
 
 </script>
 
@@ -47,8 +48,21 @@ const openAccordionHandle = () => {
                 </div>
             </div>
         </div>
-        <hr>
+        <hr v-if="!accordionOpened">
         <div id="accordion-valorations" class="accordion-content">
+            <div class="accordion-write-validation-section">
+                <div class="accordion-write-validation-section_valorations">
+                    <div>
+                        <ProductDetailStars />
+                    </div>
+                    <div class="accordion-write-validation-section_valorations_text">
+                        5 Estrellas
+                    </div>
+                </div>
+                <div class="accordion-write-validation-section_button">
+                    Escribir una evaluación
+                </div>
+            </div>
             <div class="accordion-personal-body">
                 <div class="accordion-personal-body_results_not_found">
                     {{ trans('44b9b649-6f37-475e-a597-baec75888a6d') }}
@@ -59,6 +73,19 @@ const openAccordionHandle = () => {
 </template>
 
 <style scoped>
+.accordion-write-validation-section_button{
+    text-decoration: underline;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.accordion-write-validation-section_valorations_text{
+    margin-left: 10px;
+    margin-top: 2px;
+}
+.accordion-write-validation-section_valorations{
+    display: flex;
+    margin-bottom: 15px;
+}
 .arrow-accordion {
     padding-top: 3px;
     margin-left: 10px;
