@@ -1,5 +1,5 @@
 <template>
-    <Carousel>
+    <Carousel v-if="images.length > 1">
         <Slide v-for="(item, index) in images" :index="index">
             <ImageCup :image="item.url" imagePosition="center" />
         </Slide>
@@ -7,6 +7,9 @@
             <Navigation />
         </template>
     </Carousel>
+    <div v-else>
+        <ImageCup :image="images[0].url" imagePosition="center" />
+    </div>
 </template>
 
 <script>
