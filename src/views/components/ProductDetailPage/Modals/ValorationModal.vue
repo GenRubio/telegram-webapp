@@ -4,7 +4,12 @@ import { useTranslationsStore } from "../../../../store/translations.store";
 
 const { trans } = useTranslationsStore();
 const rating = ref(5);
+const valoration = ref("");
 const props = defineProps(["closeValorationModal"]);
+const resetValoration = () => {
+  rating.value = 5;
+  valoration.value = "";
+};
 onMounted(() => {
   let buttonsStart = document.querySelectorAll(
     ".vue3-star-ratings__wrapper .vue3-star-ratings button"
@@ -28,16 +33,20 @@ onMounted(() => {
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="valoration-modal_label">Valoracion</h5>
+          <h5 class="modal-title" id="valoration-modal_label">
+            {{ trans("c4caad19-b270-41a3-9916-fb2cd9440829") }}
+          </h5>
           <button
             type="button"
             class="btn-close"
             aria-label="Close"
-            @click="closeValorationModal"
+            @click="
+              closeValorationModal();
+              resetValoration();
+            "
           ></button>
         </div>
         <div class="modal-body">
-          <label>Estrellas</label>
           <div class="stars_cotnainer">
             <vue3-star-ratings
               v-model="rating"
@@ -51,14 +60,21 @@ onMounted(() => {
               controlBg="#333"
             />
           </div>
+          <textarea
+            v-model="valoration"
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="5"
+            :placeholder="trans('83461fda-1783-4db3-968d-1a7dea841247')"
+          ></textarea>
         </div>
         <div class="modal-footer">
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-dark"
             @click="closeValorationModal"
           >
-            {{ trans("1f2508b7-543b-4df1-834c-20dd5327a6ec") }}
+            {{ trans("84f17e21-36f4-4b38-80c6-549cd2718975") }}
           </button>
         </div>
       </div>
@@ -67,9 +83,17 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #212529;
+  outline: 0;
+  box-shadow: none;
+}
 .stars_cotnainer {
   display: flex;
   justify-content: center;
+  margin: 25px 0;
 }
 .vue3-star-ratings__wrapper {
   padding: 0;

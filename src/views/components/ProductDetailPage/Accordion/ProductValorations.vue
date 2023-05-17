@@ -3,7 +3,7 @@ import { ref } from "vue";
 import ProductDetailStars from "../../ProductDetailPage/ProductDetailStars.vue";
 import { useTranslationsStore } from "../../../../store/translations.store";
 
-const props = defineProps(["product", "openValorationModal"]);
+const props = defineProps(["product", "openValorationModal", "valorations"]);
 const { trans } = useTranslationsStore();
 const accordionOpened = ref(false);
 const openAccordionHandle = () => {
@@ -16,14 +16,13 @@ const openAccordionHandle = () => {
     content.style.maxHeight = content.scrollHeight + "px";
   }
 };
-console.log(props.product);
 </script>
 
 <template>
   <div class="accordion-item">
     <div class="accordion-personal-button" @click="openAccordionHandle">
       <div>
-        <b>{{ trans("0ae8f717-313a-4add-8967-00b3528f38de") }} (0)</b>
+        <b>{{ trans("0ae8f717-313a-4add-8967-00b3528f38de") }} ({{ valorations.length }})</b>
       </div>
       <div v-if="!accordionOpened">
         <div class="d-flex">
@@ -66,7 +65,10 @@ console.log(props.product);
         </div>
       </div>
       <div class="accordion-personal-body">
-        <div class="accordion-personal-body_results_not_found">
+        <div
+          v-if="valorations.length == 0"
+          class="accordion-personal-body_results_not_found"
+        >
           {{ trans("44b9b649-6f37-475e-a597-baec75888a6d") }}
         </div>
       </div>
