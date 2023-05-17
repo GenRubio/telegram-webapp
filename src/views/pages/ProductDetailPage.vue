@@ -36,7 +36,7 @@ window.scrollTo(0, 0);
           </div>
           <ProductDetailSpecifications :data="product.product.description.data" />
           <ProductDetailFlavors :product="product.product" :flavors="product.flavors" />
-          <ProductDetailAccordion :data="product.product.description.data" />
+          <ProductDetailAccordion :product="product.product" />
           <Separator />
      </div>
      <Footer v-if="!loadingProduct" />
