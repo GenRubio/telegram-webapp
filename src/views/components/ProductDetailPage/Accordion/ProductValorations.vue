@@ -57,7 +57,7 @@ const openAccordionHandle = () => {
           </div>
         </div>
         <div
-          v-if="product.bought && !product.has_valoration"
+          v-if="product.user.bought && !product.user.has_valoration"
           class="accordion-write-validation-section_button"
           @click="openValorationModal"
         >

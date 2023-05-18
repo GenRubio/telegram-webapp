@@ -4,7 +4,7 @@ import ProductSpecifications from "../ProductDetailPage/Accordion/ProductSpecifi
 import ProductValorations from "../ProductDetailPage/Accordion/ProductValorations.vue";
 import { Modal } from "bootstrap";
 import ValorationModal from "../ProductDetailPage/Modals/ValorationModal.vue";
-const props = defineProps(["product", "valorations"]);
+const props = defineProps(["product", "valorations", "chatId"]);
 const valorationModal = ref(null);
 onMounted(() => {
   valorationModal.value = new Modal("#valoration-modal", {});
@@ -18,7 +18,11 @@ function closeValorationModal() {
 </script>
 
 <template>
-  <ValorationModal :closeValorationModal="closeValorationModal" />
+  <ValorationModal
+    :product="product"
+    :closeValorationModal="closeValorationModal"
+    :chatId="chatId"
+  />
   <div class="product-detail-accordion_container">
     <ProductSpecifications :data="product.description.data" />
     <ProductValorations

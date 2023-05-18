@@ -1,15 +1,15 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import axios from 'axios';
 import { useTranslationsStore } from "../../../../store/translations.store";
+import { useUtilsStore } from "../../../../store/utils.store";
 
 const { trans } = useTranslationsStore();
 const rating = ref(5);
 const valoration = ref("");
-const props = defineProps(["closeValorationModal"]);
-const resetValoration = () => {
-  rating.value = 5;
-  valoration.value = "";
-};
+const showAlert = ref(false);
+const { api } = useUtilsStore();
+const props = defineProps(["product", "closeValorationModal", "chatId"]);
 onMounted(() => {
   let buttonsStart = document.querySelectorAll(
     ".vue3-star-ratings__wrapper .vue3-star-ratings button"
@@ -20,6 +20,49 @@ onMounted(() => {
     buttonsStart[i].style.setProperty("margin", "0 10px", "important");
   }
 });
+const sendButtonDisabled = (value) => {
+  let buttonSend = document.getElementById("button-send-valoration");
+  buttonSend.disabled = value;
+};
+const resetValoration = () => {
+  rating.value = 5;
+  valoration.value = "";
+  sendButtonDisabled(false);
+};
+const sendValoration = () => {
+  sendButtonDisabled(true);
+  showAlert.value = false;
+  if (valoration.value.trim().length == 0) {
+    showAlert.value = true;
+    sendButtonDisabled(false);
+  } else {
+    let data = {};
+    data.rate = rating.value;
+    data.comment = valoration.value;
+    data.productReference = props.product.reference;
+    data.token = props.chatId;
+    axios
+      .post(api + "valoration/create", data)
+      .then(function (response) {
+        if (response.data.error) {
+          Swal.fire({
+            title: trans("853680aa-ab88-43d1-ad9d-db7997da4879"),
+            text: response.data.error,
+          });
+        }
+      })
+      .catch(function (err) {
+        Swal.fire({
+          title: trans("853680aa-ab88-43d1-ad9d-db7997da4879"),
+          text: trans("e44f696e-4de0-47c5-8cfb-42656ff214b7"),
+        });
+      })
+      .finally(function () {
+        closeValorationModal();
+        resetValoration();
+      });
+  }
+};
 </script>
 
 <template>
@@ -60,6 +103,9 @@ onMounted(() => {
               controlBg="#333"
             />
           </div>
+          <div v-if="showAlert" class="alert alert-danger" role="alert">
+            {{ trans("31acb8cf-d98c-420c-b0c2-dbad9db2ece7") }}
+          </div>
           <textarea
             v-model="valoration"
             class="form-control"
@@ -70,9 +116,10 @@ onMounted(() => {
         </div>
         <div class="modal-footer">
           <button
+            id="button-send-valoration"
             type="button"
             class="btn btn-dark"
-            @click="closeValorationModal"
+            @click="sendValoration"
           >
             {{ trans("84f17e21-36f4-4b38-80c6-549cd2718975") }}
           </button>

@@ -43,6 +43,7 @@ console.log(product);
     <ProductDetailAccordion
       :product="product.product"
       :valorations="product.valorations"
+      :chatId="chatId"
     />
     <Separator />
   </div>
