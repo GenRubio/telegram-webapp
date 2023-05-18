@@ -110,7 +110,7 @@ console.log(props.valorations);
   margin-top: 2px;
 }
 .valoration-user-section {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .valoration-user-container {
   border: 1px solid rgb(204, 204, 204);
