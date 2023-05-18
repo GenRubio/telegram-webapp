@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+const props = defineProps(["stars"]);
 
-const rating = ref(5);
+const rating = ref(props.stars);
 </script>
 
 <template>

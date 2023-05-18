@@ -22,6 +22,7 @@ function closeValorationModal() {
     :product="product"
     :closeValorationModal="closeValorationModal"
     :chatId="chatId"
+    :valorations="valorations"
   />
   <div class="product-detail-accordion_container">
     <ProductSpecifications :data="product.description.data" />

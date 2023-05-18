@@ -23,7 +23,6 @@ const { product, loadingProduct, getProduct } = getProductDetailApi();
 getProduct(chatId, productReference);
 
 window.scrollTo(0, 0);
-console.log(product);
 </script>
 
 <template>

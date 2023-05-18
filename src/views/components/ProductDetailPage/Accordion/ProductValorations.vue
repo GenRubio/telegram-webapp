@@ -16,18 +16,23 @@ const openAccordionHandle = () => {
     content.style.maxHeight = content.scrollHeight + "px";
   }
 };
+console.log(props.valorations);
 </script>
 
 <template>
   <div class="accordion-item">
     <div class="accordion-personal-button" @click="openAccordionHandle">
       <div>
-        <b>{{ trans("0ae8f717-313a-4add-8967-00b3528f38de") }} ({{ valorations.length }})</b>
+        <b
+          >{{ trans("0ae8f717-313a-4add-8967-00b3528f38de") }} ({{
+            valorations.length
+          }})</b
+        >
       </div>
       <div v-if="!accordionOpened">
         <div class="d-flex">
           <div>
-            <ProductDetailStars />
+            <ProductDetailStars :stars="product.valoration_mean" />
           </div>
           <div class="arrow-accordion">
             <i class="fa-solid fa-chevron-up"></i>
@@ -37,7 +42,7 @@ const openAccordionHandle = () => {
       <div v-if="accordionOpened">
         <div class="d-flex">
           <div>
-            <ProductDetailStars />
+            <ProductDetailStars :stars="product.valoration_mean" />
           </div>
           <div class="arrow-accordion">
             <i class="fa-solid fa-chevron-down"></i>
@@ -50,10 +55,11 @@ const openAccordionHandle = () => {
       <div class="accordion-write-validation-section">
         <div class="accordion-write-validation-section_valorations">
           <div>
-            <ProductDetailStars />
+            <ProductDetailStars :stars="product.valoration_mean" />
           </div>
           <div class="accordion-write-validation-section_valorations_text">
-            5 {{ trans("7ac33e0d-1076-47d2-b38d-c5372fe1a10a") }}
+            {{ product.valoration_mean }}
+            {{ trans("7ac33e0d-1076-47d2-b38d-c5372fe1a10a") }}
           </div>
         </div>
         <div
@@ -71,12 +77,49 @@ const openAccordionHandle = () => {
         >
           {{ trans("44b9b649-6f37-475e-a597-baec75888a6d") }}
         </div>
+        <div v-else class="valoration-user-section">
+          <div
+            v-for="valoration in valorations.filter((valoration) => {
+              return valoration.visible;
+            })"
+            class="valoration-user-container shadow-sm"
+          >
+            <div class="d-flex justify-content-between">
+              <div>
+                <ProductDetailStars :stars="valoration.stars" />
+              </div>
+              <div class="valoration-date">
+                {{ valoration.created_at }}
+              </div>
+            </div>
+            <div class="valoration-user-container_text">
+              {{ valoration.comment }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.valoration-user-container_text{
+  margin-top: 5px;
+}
+.valoration-date {
+  margin-top: 2px;
+}
+.valoration-user-section {
+  margin-bottom: 10px;
+}
+.valoration-user-container {
+  border: 1px solid rgb(204, 204, 204);
+  padding: 10px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.638);
+  font-size: 15px;
+  margin-bottom: 7px;
+}
 .accordion-write-validation-section_button {
   text-decoration: underline;
   margin-bottom: 20px;

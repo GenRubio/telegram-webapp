@@ -10,7 +10,12 @@ const rating = ref(5);
 const valoration = ref("");
 const showAlert = ref(false);
 const { api } = useUtilsStore();
-const props = defineProps(["product", "closeValorationModal", "chatId"]);
+const props = defineProps([
+  "product",
+  "closeValorationModal",
+  "chatId",
+  "valorations",
+]);
 onMounted(() => {
   let buttonsStart = document.querySelectorAll(
     ".vue3-star-ratings__wrapper .vue3-star-ratings button"
@@ -56,6 +61,8 @@ const sendValoration = () => {
             icon: "success",
             text: trans("47da842b-dfa4-417e-b6bf-da7e4d8c2b68"),
           });
+          props.valorations.unshift(response.data.valoration);
+          props.product.user.has_valoration = true;
         }
       })
       .catch(function (err) {
