@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import axios from 'axios';
+import axios from "axios";
+import Swal from "sweetalert2";
 import { useTranslationsStore } from "../../../../store/translations.store";
 import { useUtilsStore } from "../../../../store/utils.store";
 
@@ -46,19 +47,26 @@ const sendValoration = () => {
       .then(function (response) {
         if (response.data.error) {
           Swal.fire({
+            icon: "error",
             title: trans("853680aa-ab88-43d1-ad9d-db7997da4879"),
             text: response.data.error,
+          });
+        } else {
+          Swal.fire({
+            icon: "success",
+            text: trans("47da842b-dfa4-417e-b6bf-da7e4d8c2b68"),
           });
         }
       })
       .catch(function (err) {
         Swal.fire({
+          icon: "error",
           title: trans("853680aa-ab88-43d1-ad9d-db7997da4879"),
           text: trans("e44f696e-4de0-47c5-8cfb-42656ff214b7"),
         });
       })
       .finally(function () {
-        closeValorationModal();
+        props.closeValorationModal();
         resetValoration();
       });
   }
