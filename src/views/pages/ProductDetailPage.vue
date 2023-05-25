@@ -84,6 +84,7 @@ window.scrollTo(0, 0);
       :product="product.product"
       :getLastViewedProducts="getLastViewedProducts"
       :loadNewProduct="loadNewProduct"
+      :newProducts="product.new_products"
     />
     <Separator />
   </div>
