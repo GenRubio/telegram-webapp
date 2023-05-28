@@ -112,7 +112,7 @@ const clickOrders = () => {
     width: 100%;
     background-color: #fff;
     /*transition: bottom 0.3s ease-out;*/
-    z-index: 2;
+    z-index: 999;
     bottom: 0;
     opacity: 1;
     visibility: visible;
