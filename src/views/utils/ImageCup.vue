@@ -11,7 +11,9 @@ defineProps([
             'background-image': 'url(' + image + ')',
             'background-repeat': 'no-repeat',
             'background-size': 'contain',
-            'background-position': imagePosition
+            'background-position': imagePosition,
+            'padding': '5px',
+            'background-origin': 'content-box'
         }">
         </div>
     </div>
@@ -22,6 +24,7 @@ defineProps([
     position: relative;
     width: 100%;
     border-radius: 7px;
+    overflow: hidden;
 }
 
 .image-cube_image:after {
