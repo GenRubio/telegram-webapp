@@ -21,7 +21,7 @@ const openAccordionHandle = () => {
   <div class="accordion-item">
     <div class="accordion-personal-button" @click="openAccordionHandle">
       <div>
-        <b>{{ trans('342dc706-5a68-4007-a143-45b6778bb4f0') }}</b>
+        <b>{{ trans("342dc706-5a68-4007-a143-45b6778bb4f0") }}</b>
       </div>
       <div v-if="!accordionOpened">
         <div class="d-flex">
@@ -121,5 +121,12 @@ ul {
   padding-left: 0px;
   padding-right: 0px;
   border-bottom: 1px solid #c0c0c0;
+  padding-bottom: 25px;
+}
+
+.accordion-personal-body ::v-deep p {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 15px;
 }
 </style>

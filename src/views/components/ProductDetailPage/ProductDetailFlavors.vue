@@ -90,6 +90,7 @@ const addFlavorsToTrolley = () => {
     showAddButton.value = false;
     showFooter();
     Swal.fire({
+        icon: "success",
         title: trans('dfda1d7c-508a-4bb5-8255-52d94b23dd39'),
         text: trans('7b626510-00a7-4a64-a175-67432e1b3a73')
     });
