@@ -12,7 +12,7 @@ defineProps([
             'background-repeat': 'no-repeat',
             'background-size': 'contain',
             'background-position': imagePosition,
-            'padding': '5px',
+            'padding': '10px',
             'background-origin': 'content-box'
         }">
         </div>
