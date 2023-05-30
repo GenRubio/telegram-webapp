@@ -8,6 +8,7 @@ import ProductDetailHeader from "../components/ProductDetailPage/ProductDetailHe
 import ProductDetailSpecifications from "../components/ProductDetailPage/ProductDetailSpecifications.vue";
 import ProductDetailAccordion from "../components/ProductDetailPage/ProductDetailAccordion.vue";
 import ProductDetailFlavors from "../components/ProductDetailPage/ProductDetailFlavors.vue";
+import ProductDetailFooterAlerts from "../components/ProductDetailPage/ProductDetailFooterAlerts.vue";
 import Separator from "../components/Separator.vue";
 import Footer from "../utils/Footer.vue";
 import HeaderPages from "../utils/HeaderPages.vue";
@@ -79,6 +80,7 @@ window.scrollTo(0, 0);
       :valorations="product.valorations"
       :chatId="chatId"
     />
+    <ProductDetailFooterAlerts />
     <LastViewedProducts
       :chatId="chatId"
       :product="product.product"
