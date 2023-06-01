@@ -32,7 +32,13 @@ window.scrollTo(0, 0);
   <Spinner v-if="validationCompleted === false" />
   <div v-else class="content">
     <Breadcrumb :chatId="chatId" />
-    <TrolleyPageNotFound v-if="trolley.length == 0" :chatId="chatId" />
+    <div v-if="trolley.length == 0">
+      <TrolleyPageNotFound :chatId="chatId" />
+      <TrolleyPageLastViewedProducts
+        :chatId="chatId"
+        :getLastViewedProducts="getLastViewedProducts"
+      />
+    </div>
     <div v-else>
       <BlackInfoAlert :text="trans('bca7fd48-3024-49d0-adfa-6265fb745d52')" />
       <TrolleyPageHeader :trolley="trolley" />
@@ -44,10 +50,6 @@ window.scrollTo(0, 0);
       <TrolleyPageShippingButton :chatId="chatId" />
     </div>
   </div>
-  <TrolleyPageLastViewedProducts
-    :chatId="chatId"
-    :getLastViewedProducts="getLastViewedProducts"
-  />
   <Footer v-if="validationCompleted === true" />
 </template>
 
