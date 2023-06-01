@@ -1,28 +1,28 @@
 <script setup>
-import ProductsGridItem from "./ProductsPage/ProductsGridItem.vue";
-import { useGoRoute } from "../../router/goRoute";
-import { useTranslationsStore } from "../../store/translations.store";
+import { ref } from "vue";
+import ProductsGridItem from "../ProductsPage/ProductsGridItem.vue";
+import { useGoRoute } from "../../../router/goRoute";
+import { useTranslationsStore } from "../../../store/translations.store";
+import { useNewProductsStore } from "../../../store/new-products.store";
 
 const props = defineProps([
   "chatId",
-  "product",
   "getLastViewedProducts",
-  "loadNewProduct",
   "newProducts",
 ]);
-console.log(props.newProducts)
+
 const { trans } = useTranslationsStore();
 const clickProductHandle = (reference) => {
   const { goProductDetailPage } = useGoRoute();
   goProductDetailPage(props.chatId, reference);
-  props.loadNewProduct(reference);
 };
-
+const { getNewProducts } = useNewProductsStore();
+const newProducts = ref(getNewProducts());
 </script>
 
 <template>
   <div
-    v-if="getLastViewedProducts(product).length > 0"
+    v-if="getLastViewedProducts(null).length > 0"
     class="last-viewed-products_container"
   >
     <div class="last-viewed-products_title">
@@ -30,7 +30,7 @@ const clickProductHandle = (reference) => {
     </div>
     <div class="last-viewed-products_grid-container">
       <ProductsGridItem
-        v-for="(product, index) in getLastViewedProducts(product)"
+        v-for="(product, index) in getLastViewedProducts(null)"
         :product="product"
         :key="index"
         @click="clickProductHandle(product.reference)"
@@ -43,9 +43,7 @@ const clickProductHandle = (reference) => {
     </div>
     <div class="last-viewed-products_grid-container">
       <ProductsGridItem
-        v-for="(product, index) in (newProducts.products.filter(function(item){
-          return item.reference != product.reference;
-        })).slice(0, 2)"
+        v-for="(product, index) in newProducts.products.slice(0, 2)"
         :product="product"
         :key="index"
         @click="clickProductHandle(product.reference)"

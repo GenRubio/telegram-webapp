@@ -45,5 +45,6 @@ onMounted(() => {
 .not-found-products {
     padding: 0px 20px;
     background-color: #ffffff;
+    margin-bottom: 80px;
 }
 </style>

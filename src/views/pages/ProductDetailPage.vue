@@ -13,7 +13,7 @@ import Separator from "../components/Separator.vue";
 import Footer from "../utils/Footer.vue";
 import HeaderPages from "../utils/HeaderPages.vue";
 import Breadcrumb from "../utils/Breadcrumb.vue";
-import LastViewedProducts from "../components/LastViewedProducts.vue";
+import LastViewedProducts from "../components/ProductDetailPage/LastViewedProducts.vue";
 import { useLastViewsStore } from "../../store/last-views.store";
 import { useUtilsStore } from "../../store/utils.store";
 import { useWebMiddleware } from "../../middlewares/webMiddleware";

@@ -13,11 +13,15 @@ export const useLastViewsStore = defineStore("useLastViews", () => {
     lastViewProducts.value.push(product);
   };
 
-  const getLastViewedProducts = (actualProduct) => {
+  const getLastViewedProducts = (actualProduct = null) => {
     let lastTwoViewedProducts = [];
     lastViewProducts.value.forEach(function (lastViewProduct, index) {
-      if (lastViewProduct.reference != actualProduct.reference) {
+      if (actualProduct == null) {
         lastTwoViewedProducts.push(lastViewProduct);
+      } else {
+        if (lastViewProduct.reference != actualProduct.reference) {
+          lastTwoViewedProducts.push(lastViewProduct);
+        }
       }
     });
     return lastTwoViewedProducts.slice(-2);
