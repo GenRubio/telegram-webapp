@@ -18,7 +18,7 @@ const { settingValue } = useParametricSettingsStore();
       <div class="footer-section_title">
         {{ trans("0f9dba0f-e933-4d8f-92ce-451ed16eb71a") }}
       </div>
-      <hr />
+      <hr class="hr-separator" />
       <div>
         <div class="footer-section_contact_item">
           <font-awesome-icon :icon="['far', 'paper-plane']" />
@@ -44,7 +44,7 @@ const { settingValue } = useParametricSettingsStore();
       <div class="footer-section_title">
         {{ trans("242f5af5-9143-4d9a-8e14-e6a86a271c3d") }}
       </div>
-      <hr />
+      <hr class="hr-separator" />
       <div class="social-container d-flex">
         <div class="d-flex">
           <div
@@ -69,7 +69,10 @@ const { settingValue } = useParametricSettingsStore();
 </template>
 
 <style scoped>
-.footer-section_contact_item_content{
+.hr-separator {
+  margin-bottom: 10px !important;
+}
+.footer-section_contact_item_content {
   margin-left: 5px;
 }
 .footer-section_contact_item {
@@ -77,6 +80,7 @@ const { settingValue } = useParametricSettingsStore();
 }
 .footer-section_title {
   padding: 5px 0;
+  font-weight: bold;
 }
 .footer_container {
   padding-left: 20px;
@@ -107,7 +111,7 @@ a {
   color: #ffffff;
 }
 .footer {
-  margin-top: 70px;
+
 }
 .footer hr {
   padding: 0;

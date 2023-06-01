@@ -6,6 +6,7 @@ import ProductsNotFound from '../components/ProductsPage/ProductsNotFound.vue';
 import HeaderPages from '../../views/utils/HeaderPages.vue';
 import ProductsFilters from '../../views/components/ProductsPage/ProductsFilters.vue';
 import Footer from '../utils/Footer.vue';
+import Separator from "../components/Separator.vue";
 import { useFiltersStore } from '../../store/filters.store';
 import { getProductsApi } from '../../api/getProductsApi';
 import { useWebMiddleware } from '../../middlewares/webMiddleware';
@@ -33,7 +34,8 @@ window.scrollTo(0, 0);
         <div v-else>
             <ProductsNotFound />
         </div>
-    </div>
+        <Separator />
+    </div>  
     <Footer v-if="!loadingProducts" />
 </template>
 

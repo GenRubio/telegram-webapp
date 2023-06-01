@@ -38,6 +38,7 @@ window.scrollTo(0, 0);
         :chatId="chatId"
         :getLastViewedProducts="getLastViewedProducts"
       />
+      <Separator />
     </div>
     <div v-else>
       <BlackInfoAlert :text="trans('bca7fd48-3024-49d0-adfa-6265fb745d52')" />
