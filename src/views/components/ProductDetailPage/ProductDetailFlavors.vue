@@ -305,7 +305,10 @@ const addFlavorsToTrolley = () => {
   display: flex;
   justify-content: center;
   font-size: 20px;
-  padding: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   box-shadow: 0px -2px 5px 0px rgba(93, 93, 93, 0.75);
   border: 1px solid black;
 }
