@@ -18,10 +18,11 @@ const { settingValue } = useParametricSettingsStore();
       <div class="footer-section_title">
         {{ trans("0f9dba0f-e933-4d8f-92ce-451ed16eb71a") }}
       </div>
+      <hr />
       <div>
         <div class="footer-section_contact_item">
           <font-awesome-icon :icon="['far', 'paper-plane']" />
-          <span>
+          <span class="footer-section_contact_item_content">
             {{ trans("41427b75-070b-4428-b0f9-2da378ab2769") }}:
             <a
               :href="settingValue('settings-telegram_group')"
@@ -32,7 +33,7 @@ const { settingValue } = useParametricSettingsStore();
         </div>
         <div class="footer-section_contact_item">
           <font-awesome-icon :icon="['fasl', 'envelope']" />
-          <span>
+          <span class="footer-section_contact_item_content">
             {{ trans("5e9103bb-e723-420e-b737-954d79b03469") }}:
             <a href="mailto:{{ settingValue('settings-contact_mail') }}">{{
               settingValue("settings-contact_mail")
@@ -43,6 +44,7 @@ const { settingValue } = useParametricSettingsStore();
       <div class="footer-section_title">
         {{ trans("242f5af5-9143-4d9a-8e14-e6a86a271c3d") }}
       </div>
+      <hr />
       <div class="social-container d-flex">
         <div class="d-flex">
           <div
@@ -67,11 +69,14 @@ const { settingValue } = useParametricSettingsStore();
 </template>
 
 <style scoped>
+.footer-section_contact_item_content{
+  margin-left: 5px;
+}
 .footer-section_contact_item {
-  margin: 5px auto;
+  margin: 10px auto;
 }
 .footer-section_title {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 .footer_container {
   padding-left: 20px;
